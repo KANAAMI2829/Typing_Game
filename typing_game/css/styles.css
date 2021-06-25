@@ -1,0 +1,271 @@
+@font-face {
+  font-family: "Rounded-M+";
+  src: 
+  url("../font/rounded-mplus-1m-regular.woff2") format("woff2"),
+  url("../font/rounded-mplus-1m-regular.woff") format("woff"),
+  url("../font/rounded-mplus-1m-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Syntesia";
+  src:
+  url("../font/Syntesia.woff2") format("woff2"),
+  url("../font/Syntesia.woff") format("woff"),
+  url("../font/Syntesia.ttf") format("truetype");
+}
+
+html {
+  background-color: whitesmoke;
+}
+
+body {
+  color: #333;
+  margin: 0;
+  font-family: "Rounded-M+", Verdana, sans-serif;
+}
+
+header {
+  background-color: #c0d9f0;
+  height: 63px;
+}
+
+header > div {
+  width: 47.42px;
+  margin-left: 40px;
+}
+
+header > div > a > img {
+  filter: invert(24%) sepia(0%) saturate(1966%) hue-rotate(119deg) brightness(108%) contrast(82%);
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.info {
+  display: flex;
+}
+
+.info a {
+  height: 63px;
+  text-align: center;
+}
+
+.homeButton {
+  padding-top: 3px;
+  transition: 0.3s;
+}
+
+.homeButton:hover {
+  transform: scale(1.06);
+  backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
+.settings {
+  padding-top: 5px;
+  margin-left: 20px;
+  transition: 0.3s;
+}
+
+.settings:hover {
+  transform: scale(1.06);
+  backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
+hr {
+  margin: 0;
+  height: 8px;
+  background-color: #486d94;
+  border: none;
+}
+
+/* 以下設定画面のスタイル */
+
+#Settings_Screen {
+  opacity: 0;
+}
+
+#Setting_Contents {
+  height: auto;
+  padding-bottom: 40px;
+}
+
+#Setting_Contents h1 {
+  position: relative;
+  text-align: center;
+  font-size: 32px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.SettingElements h2 {
+  width: 300px;
+}
+
+.select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+select {
+  width: 130px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+/* 以下タイピングゲームのスタイル */
+
+#Timer_Space {
+  position: relative;
+  top: 20px;
+  left: 65px;
+  width: 240px;
+  font-size: 30px;
+}
+
+#Count_Down {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #486d94;
+  font-size: 90px;
+  opacity: 0;
+}
+
+#Finish {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #486d94;
+  font-size:110px;
+  opacity: 1;
+}
+
+#Typing_Space {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  white-space: nowrap;
+  font-size: 34px;
+}
+
+#Hiragana_Space {
+  font-size: 26px;
+}
+
+#Romaji_Space {
+  font-size: 26px;
+}
+
+#Miss_Alert {
+  position: absolute;
+  top: 72%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #d72500;
+  font-size: 110px;
+  opacity: 0;
+}
+
+#Count_Space {
+  position: absolute;
+  top: 90%;
+  right: 65px;
+  margin: 0;
+  font-size: 30px;
+}
+
+.counters {
+  display: inline-block;
+  text-align: right;
+  list-style: none;
+  width: 240px;
+}
+
+.scores {
+  display: inline-block;
+  text-align: right;
+  list-style: none;
+  width: 300px;
+}
+
+#Good_Counter {
+  position: absolute;
+  right: 220px;
+}
+
+#Miss_Counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#WPM_Result {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+}
+
+#Accuracy_Result {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+}
+
+#Score_Result {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+}
+
+#Rank_Space {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  top: 90%;
+  right: 65px;
+  opacity: 0;
+  margin: auto;
+}
+
+#Rank_Result {
+  padding-top: 16px;
+  opacity: 0;
+}
+
+#Rank {
+  font-family: "Syntesia";
+  opacity: 0;
+  font-size: 0;
+  color: #486d94;
+}
+
+#Restart {
+  position: absolute;
+  text-align: center;
+  top: 85%;
+  width: 100vw;
+  opacity: 0;
+  font-size: 30px;
+}
+
+#Copyright {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  color: #666;
+}
