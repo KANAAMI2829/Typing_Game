@@ -188,7 +188,6 @@ const EN_REIBUN_TABLE_JUNIOR_1 = [
   ['run','走る'],
   ['stop','止める，止まる'],
   ['have','持っている'],
-  ['have','食べる'],
   ['wait','待つ'],
   ['collect','集める'],
   ['send','送る'],
