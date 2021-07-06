@@ -147,7 +147,7 @@ const EN_REIBUN_TABLE_JUNIOR_1 = [
   ['meter','メートル'],
   ['thing','こと・物'],
   ['name','名前'],
-  ['walk','散歩'],
+  ['walk','歩く・散歩'],
   ['work','仕事，作品'],
   ['season','季節'],
   ['spring','春'],
