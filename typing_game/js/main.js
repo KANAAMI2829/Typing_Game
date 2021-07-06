@@ -67,7 +67,16 @@ SETTINGS_BUTTON.addEventListener('click', () => {
 
 // 設定画面から元の画面に戻る
 HOME_BUTTON.addEventListener('click', () => {
+  if (isRestartReady) {
+    restartAnimation();
+    isRestartReady = false;
+    return false;
+  }
+
+  if (isPlaying === true) startOver();
+
   if (isSetting !== true) return;
+
   if (GAME_MODE.value === 'ja') {
     ENmode = false;
     PGmode = false;
@@ -78,9 +87,11 @@ HOME_BUTTON.addEventListener('click', () => {
     PGmode = true;
     ENmode = false;
   }
+
   TimeLimit = Number(TIME_LIMIT_VALUE.value) * 1000;
   isSetting = false;
   returnAnimation();
+
   if (isRestartReady) {
     restartNoneAnimation();
     isRestartReady = false;
@@ -96,7 +107,9 @@ document.addEventListener('keydown', e => {
       return false;
     }
   }
+
   if (isSetting) return;
+
   if (e.key === 'Escape' && isPlaying === true) startOver();
 
   if (ENmode === true && gamePreparationEN(e.key)) return;
