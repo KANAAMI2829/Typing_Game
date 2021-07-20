@@ -104,6 +104,10 @@ function finishAnimation() {
     COUNT_DOWN.id = 'Finish';
     COUNT_DOWN.style.opacity = '1';
     Finish = document.getElementById('Finish');
+    WPM.textContent = WPM_VALUE.toFixed(0);
+    ACCURACY.textContent = ACCURACY_RATE.toFixed(2);
+    SCORE.textContent = SCORE_VALUE.toFixed(0);
+    RANK.textContent = judgeRank(SCORE.textContent);
 
     setTimeout(() => {
       Finish.animate({
@@ -144,20 +148,38 @@ function finishAnimation() {
           easing: 'ease-in-out',
           fill: 'forwards'
         })
-        GOOD_COUNTER.animate({
-          right: '0'
-        },{
-          duration: 800,
-          easing: 'ease-in-out',
-          fill: 'forwards'
-        })
-        MISS_COUNTER.animate({
-          top: '60px'
-        },{
-          duration: 800,
-          easing: 'ease-in-out',
-          fill: 'forwards'
-        })
+        if (ENmode === true) {
+          GOOD_COUNTER.animate({
+            top: '30px',
+            right: '0'
+          },{
+            duration: 800,
+            easing: 'ease-in-out',
+            fill: 'forwards'
+          })
+          MISS_COUNTER.animate({
+            top: '90px'
+          },{
+            duration: 800,
+            easing: 'ease-in-out',
+            fill: 'forwards'
+          })
+        } else {
+          GOOD_COUNTER.animate({
+            right: '0'
+          },{
+            duration: 800,
+            easing: 'ease-in-out',
+            fill: 'forwards'
+          })
+          MISS_COUNTER.animate({
+            top: '60px'
+          },{
+            duration: 800,
+            easing: 'ease-in-out',
+            fill: 'forwards'
+          })
+        }
         setTimeout(() => {
           resolve();
         }, 800)
@@ -165,34 +187,43 @@ function finishAnimation() {
     })
   }).then(() => {
     return new Promise((resolve, reject) => {
-      WPM.textContent = WPM_VALUE.toFixed(0);
-      // style.cssTextでスタイル指定すると二回目以降positionが使えなくなる
-      WPM_RESULT.animate({
-        top: '120px'
-      },{
-        fill: 'forwards'
-      })
-      setTimeout(() => {
+      if (ENmode === true) resolve();
+      else {
+        // style.cssTextでスタイル指定すると二回目以降positionが使えなくなる
         WPM_RESULT.animate({
-          opacity: [0, 1]
+          top: '120px'
         },{
-          duration: 200,
-          easing: 'ease-in-out',
           fill: 'forwards'
         })
         setTimeout(() => {
-          resolve();
-        }, 200)
-      }, 100)
+          WPM_RESULT.animate({
+            opacity: [0, 1]
+          },{
+            duration: 200,
+            easing: 'ease-in-out',
+            fill: 'forwards'
+          })
+          setTimeout(() => {
+            resolve();
+          }, 200)
+        }, 100)
+      }
     })
   }).then(() => {
     return new Promise((resolve, reject) => {
-      ACCURACY.textContent = ACCURACY_RATE.toFixed(2);
-      ACCURACY_RESULT.animate({
-        top: '180px'
-      },{
-        fill: 'forwards'
-      })
+      if (ENmode === true) {
+        ACCURACY_RESULT.animate({
+          top: '150px'
+        },{
+          fill: 'forwards'
+        })
+      } else {
+        ACCURACY_RESULT.animate({
+          top: '180px'
+        },{
+          fill: 'forwards'
+        })
+      }
       setTimeout(() => {
         ACCURACY_RESULT.animate({
           opacity: [0, 1]
@@ -208,12 +239,19 @@ function finishAnimation() {
     })
   }).then(() => {
     return new Promise((resolve, reject) => {
-      SCORE.textContent = SCORE_VALUE.toFixed(0);
-      SCORE_RESULT.animate({
-        top: '240px'
-      },{
-        fill: 'forwards'
-      })
+      if (ENmode === true) {
+        SCORE_RESULT.animate({
+          top: '210px'
+        },{
+          fill: 'forwards'
+        })
+      } else {
+        SCORE_RESULT.animate({
+          top: '240px'
+        },{
+          fill: 'forwards'
+        })
+      }
       setTimeout(() => {
         SCORE_RESULT.animate({
           opacity: [0, 1]
@@ -255,7 +293,6 @@ function finishAnimation() {
   }).then(() => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-      RANK.textContent = judgeRank(SCORE.textContent);
         RANK.animate({
           opacity: [0, 1]
         },{
@@ -283,6 +320,7 @@ function finishAnimation() {
 // 全ての要素を初期位置に戻す(ついでに初期化も)
 function restartAnimation() {
   let promise = new Promise((resolve, reject) => {
+    const CORRECT = document.getElementById('Correct');
     Finish.id = 'Count_Down';
     HIRAGANA_SPACE.removeAttribute('hidden');
     TYPED_HIRAGANA.style.color = '#479400';
@@ -295,6 +333,19 @@ function restartAnimation() {
     ACCURACY.textContent = '0';
     SCORE.textContent = '0';
     RANK.textContent = '';
+    CorrectCount = 0;
+    if (ENmode === true) CORRECT.textContent = '0';
+    else {
+      WPM_RESULT.animate({
+        top: '0',
+        right: '0',
+        opacity: [1, 0]
+      },{
+        duration: 800,
+        easing: 'ease-in-out',
+        fill: 'forwards'
+      })
+    }
 
     COUNT_SPACE.animate({
       top: '90%',
@@ -306,6 +357,7 @@ function restartAnimation() {
       fill: 'forwards'
     })
     GOOD_COUNTER.animate({
+      top: 0,
       right: '220px'
     },{
       duration: 800,
@@ -315,15 +367,6 @@ function restartAnimation() {
     MISS_COUNTER.animate({
       top: '0',
       right: '0'
-    },{
-      duration: 800,
-      easing: 'ease-in-out',
-      fill: 'forwards'
-    })
-    WPM_RESULT.animate({
-      top: '0',
-      right: '0',
-      opacity: [1, 0]
     },{
       duration: 800,
       easing: 'ease-in-out',
@@ -352,6 +395,13 @@ function restartAnimation() {
       right: '65px',
       opacity: [1, 0],
       fontSize: '0'
+    },{
+      duration: 800,
+      easing: 'ease-in-out',
+      fill: 'forwards'
+    })
+    RANK.animate({
+      opacity: [1, 0]
     },{
       duration: 800,
       easing: 'ease-in-out',
@@ -415,6 +465,8 @@ function restartNoneAnimation() {
     ACCURACY.textContent = '0';
     SCORE.textContent = '0';
     RANK.textContent = '';
+    CorrectCount = 0;
+    if (ENmode === true) document.getElementById('Correct').textContent = '0';
 
     COUNT_SPACE.animate({
       top: '90%',
@@ -511,3 +563,4 @@ function restartNoneAnimation() {
     alert('エラーが発生しました。ページを再読み込みしてください。');
   })
 }
+

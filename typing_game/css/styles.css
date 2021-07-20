@@ -36,8 +36,6 @@ header > div {
 
 header > div > a > img {
   filter: invert(24%) sepia(0%) saturate(1966%) hue-rotate(119deg) brightness(108%) contrast(82%);
-  padding-left: auto;
-  padding-right: auto;
 }
 
 .info {
@@ -72,7 +70,7 @@ header > div > a > img {
 	-webkit-backface-visibility: hidden;
 }
 
-hr {
+#Header_hr {
   margin: 0;
   height: 8px;
   background-color: #486d94;
@@ -98,7 +96,7 @@ hr {
   margin-bottom: 40px;
 }
 
-.SettingElements h2 {
+.settingElements h2 {
   width: 300px;
 }
 
@@ -112,6 +110,28 @@ select {
   width: 130px;
   height: 36px;
   border-radius: 10px;
+}
+
+#Settings_hr {
+  width: 445px;
+  border-width: 0 0 5px;
+  border-style: solid;
+  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 1"><circle fill="hsla(0, 0%, 65%, 1.0)" cx="1" cy="0.5" r="0.5"/></svg>') 0 0 100% repeat;
+}
+
+.details_Setting {
+  display: flex;
+  width: 430px;
+  padding-bottom: 15px;
+  margin: auto;
+  text-align: left;
+}
+.details_Setting h2 {
+  font-size: 1.4em;
+  width: 300px;
+  margin-top: 4.5px;
+  margin-bottom: 4.5px;
+  /* color: #666; */
 }
 
 /* 以下タイピングゲームのスタイル */

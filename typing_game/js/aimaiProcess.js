@@ -570,8 +570,6 @@ function aimaiProcess(hiragana) {
     } else if (TypedKey === 'lts' || TypedKey === 'xts') {
       ROMAJI.textContent = 's' + ROMAJI.textContent;
       return;
-    } else if (TypedKey.match(/[^lx]t/) === null) {
-      return;
     } else if (Now_Hiragana_Romaji_4 === undefined || Now_Hiragana_Romaji_3 === undefined) {
       return;
     }

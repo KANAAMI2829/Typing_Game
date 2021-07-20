@@ -17,11 +17,11 @@
           <img src="img/Settings.svg" width="60" height="53.8" alt="設定ボタン">
         </a>
       </div>
-    </header><hr>
+    </header><hr id="Header_hr">
     <section id="Settings_Screen" hidden>
       <div id="Setting_Contents">
         <h1>ゲーム設定</h1>
-        <div class="SettingElements">
+        <div class="settingElements">
           <div class="select">
             <h2>ゲームモード</h2>
             <select name="GameMode" id="Game_Mode">
@@ -30,6 +30,28 @@
               <option value="pg">プログラミング</option>
             </select>
           </div>
+          <div id="en_dtl" hidden>
+            <div class="details_Setting">
+              <h2>学習範囲</h2>
+              <select name="Grade" id="Grade">
+                <option value="jhs1">中一</option>
+                <option value="jhs2">中二</option>
+                <option value="jhs3">中三</option>
+                <option value="hs1">高一</option>
+                <option value="hs2">高二</option>
+                <option value="hs3">高三</option>
+              </select>
+            </div>
+          </div>
+          <div id="pg_dtl" hidden>
+            <div class="details_Setting">
+              <h2>分野・言語</h2>
+              <select name="Lang" id="Lang">
+                <option value="js">JavaScript</option>
+                <option value="c">C</option>
+              </select>
+            </div>
+          </div><hr id="Settings_hr">
           <div class="select">
             <h2>制限時間</h2>
             <select name="TimeLimit" id="Time_Limit_Value">
@@ -93,7 +115,10 @@
     <script src="js/reibunTablePG.js"></script>
     <script src="js/romajiTable.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/settingFunctions.js"></script>
     <script src="js/gameFunctions.js"></script>
+    <script src="js/ENmodeFunctions.js"></script>
+    <script src="js/PGmodeFunctions.js"></script>
     <script src="js/aimai.js"></script>
     <script src="js/aimaiProcess.js"></script>
     <script src="js/animations.js"></script>

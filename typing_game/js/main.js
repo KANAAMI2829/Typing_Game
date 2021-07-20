@@ -3,6 +3,10 @@
 const SETTINGS_BUTTON   = document.getElementById('Settings_Button');
 const SETTINGS_SCREEN   = document.getElementById('Settings_Screen');
 const GAME_MODE         = document.getElementById('Game_Mode');
+const EN_DTL            = document.getElementById('en_dtl');
+const GRADE             = document.getElementById('Grade');
+const PG_DTL            = document.getElementById('pg_dtl');
+const LANG              = document.getElementById('Lang');
 const TIME_LIMIT_VALUE  = document.getElementById('Time_Limit_Value');
 const HOME_BUTTON       = document.getElementById('Home_Button');
 const TYPING_GAME       = document.getElementById('Typing_Game');
@@ -26,14 +30,15 @@ const WPM_RESULT        = document.getElementById('WPM_Result');
 const ACCURACY_RESULT   = document.getElementById('Accuracy_Result');
 const SCORE_RESULT      = document.getElementById('Score_Result');
 const RANK_RESULT       = document.getElementById('Rank_Result');
-const GOOD              = document.getElementById('Good');
 const MISS              = document.getElementById('Miss');
 const WPM               = document.getElementById('WPM');
-const ACCURACY          = document.getElementById('Accuracy');
 const SCORE             = document.getElementById('Score');
 const RANK              = document.getElementById('Rank');
 const RESTART           = document.getElementById('Restart');
 
+
+let GOOD = document.getElementById('Good');
+let ACCURACY = document.getElementById('Accuracy');
 let TimeLimit = 30 * 1000;
 let isSetting = false;
 let isPlaying = false;
@@ -55,48 +60,13 @@ let Random_Reibun;
 let Now_Reibun_Number;
 let GoodCount;
 let MissCount;
+let CorrectCount = 0;
 
-// 設定画面に行く
-SETTINGS_BUTTON.addEventListener('click', () => {
-  if (isSetting === false && isPlaying === false) {
-    if (isReady === false && isRestartReady === false) return;
-    isSetting = true;
-    settingsAnimation();
-  }
-})
+SETTINGS_BUTTON.addEventListener('click', () => goSettings());
 
-// 設定画面から元の画面に戻る
-HOME_BUTTON.addEventListener('click', () => {
-  if (isRestartReady) {
-    restartAnimation();
-    isRestartReady = false;
-    return false;
-  }
+HOME_BUTTON.addEventListener('click', () => returnHome());
 
-  if (isPlaying === true) startOver();
-
-  if (isSetting !== true) return;
-
-  if (GAME_MODE.value === 'ja') {
-    ENmode = false;
-    PGmode = false;
-  } else if (GAME_MODE.value === 'en') {
-    ENmode = true;
-    PGmode = false;
-  } else if (GAME_MODE.value === 'pg') {
-    PGmode = true;
-    ENmode = false;
-  }
-
-  TimeLimit = Number(TIME_LIMIT_VALUE.value) * 1000;
-  isSetting = false;
-  returnAnimation();
-
-  if (isRestartReady) {
-    restartNoneAnimation();
-    isRestartReady = false;
-  }
-})
+GAME_MODE.addEventListener('change', () => selectChange());
 
 // ゲーム中の処理
 document.addEventListener('keydown', e => {
@@ -144,7 +114,8 @@ document.addEventListener('keydown', e => {
     changeTypedRomajiColor(ROMAJI.textContent);
     replaceReibun(Romaji_Index, Typed_Romaji.length + Romaji.length);
   } else {
-    MissCount++;
+    if (ENmode !== true) MissCount++;
+    else if (ROMAJI.style.color === 'whitesmoke') MissCount++;
     MISS.textContent = MissCount;
     ROMAJI.style.color = '#a7b1be';
     TypedKey = TypedKey.slice(0, -1);

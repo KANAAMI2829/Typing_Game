@@ -67,7 +67,6 @@ function typeHiraganaSearch(next_three_hiragana) {
   return String(next_hiragna);
 }
 
-
 function setReibun() {
   JAPANESE.textContent = Random_Reibun[Now_Reibun_Number][1];
   HIRAGANA.textContent = Random_Reibun[Now_Reibun_Number][0];
@@ -80,26 +79,13 @@ function setReibun() {
   Now_Reibun_Number++;
 }
 
-function setReibunEN() {
-  JAPANESE.textContent = Random_Reibun[Now_Reibun_Number][1];
-  ROMAJI.textContent = Random_Reibun[Now_Reibun_Number][0];
-  TYPED_ROMAJI.textContent = '';
-  ROMAJI.style.color = 'whitesmoke';
-  TYPED_HIRAGANA.style.fontSize = '20px';
-  TYPED_HIRAGANA.style.color = '#666';
-  TYPED_HIRAGANA.textContent = '※英訳してください'
-  Now_Reibun_Number++;
-}
-
-function setReibunPG() {
-  JAPANESE.textContent = Random_Reibun[Now_Reibun_Number][1];
-  ROMAJI.textContent = Random_Reibun[Now_Reibun_Number][0];
-  TYPED_ROMAJI.textContent = '';
-  Now_Reibun_Number++;
-}
-
 function replaceReibun(romaji_index, romaji_length) {
   if (romaji_index === romaji_length) {
+    if (ENmode === true && ROMAJI.style.color === 'whitesmoke') {
+      const CORRECT = document.getElementById('Correct');
+      CorrectCount++;
+      CORRECT.textContent = CorrectCount;
+    }
     if (ENmode) setReibunEN();
     else if (PGmode) setReibunPG();
     else setReibun();
@@ -118,7 +104,7 @@ function shuffleReibun(array) {
   return array;
 }
 
-// 現在打つべき文字の追跡はここを通している
+// 現在打つべき文字と打ち終わった文字の追跡
 function changeTypedHiraganaColor(next_hiragana) {
   function changeColor(typed_hiragana) {
   TYPED_HIRAGANA.textContent = typed_hiragana;
@@ -184,44 +170,10 @@ function init() {
 // この処理を通らないとゲームを始められない(PG,ENも同様)
 function gamePreparation(type_key) {
   if (type_key.match(/\s/g) !== null) {
-    if (isPlaying === true || isReady === false) {
-      return false;
-    }
+    if (isPlaying === true || isReady === false) return false;
     init();
     isReady = false;
     Random_Reibun = shuffleReibun(JP_REIBUN_TABLE);
-    COUNT_DOWN_NUMBER.textContent = '3';
-    countDownAnimation(COUNT_DOWN_NUMBER.textContent);
-    return true;
-  }
-  return false;
-}
-
-function gamePreparationPG(type_key) {
-  if (type_key.match(/\s/g) !== null) {
-    if (isPlaying === true || isReady === false) {
-      return false;
-    }
-    init();
-    HIRAGANA_SPACE.setAttribute('hidden', '');
-    isReady = false;
-    Random_Reibun = shuffleReibun(PG_REIBUN_TABLE);
-    COUNT_DOWN_NUMBER.textContent = '3';
-    countDownAnimation(COUNT_DOWN_NUMBER.textContent);
-    return true;
-  }
-  return false;
-}
-
-function gamePreparationEN(type_key) {
-  if (type_key.match(/\s/g) !== null) {
-    if (isPlaying === true || isReady === false) {
-      return false;
-    }
-    init();
-    ROMAJI.style.color = 'whitesmoke';
-    isReady = false;
-    Random_Reibun = shuffleReibun(EN_REIBUN_TABLE_JUNIOR_1);
     COUNT_DOWN_NUMBER.textContent = '3';
     countDownAnimation(COUNT_DOWN_NUMBER.textContent);
     return true;
@@ -243,103 +195,109 @@ function startOver() {
   SCORE.textContent = '0';
   RANK.textContent = '';
   JAPANESE.textContent = 'スペースキーを押してスタート';
+  CorrectCount = 0;
+  if (ENmode === true) document.getElementById('Correct').textContent = '0';
 }
 
 // ここでのswitch文はバグを招きかねないので不使用
 function judgeRank(score) {
   score = Number(score);
-  if (score < 25) {
-    RANK.style.fontSize = '170px';
-    return 'G';
-  } else if (score >= 25 && score < 50) {
-    RANK.style.fontSize = '170px';
-    return 'F';
-  } else if (score >= 50 && score < 75) {
-    RANK.style.fontSize = '170px';
-    return 'E';
-  } else if (score >= 75 && score < 100) {
-    RANK.style.fontSize = '170px';
-    return 'D';
-  } else if (score >= 100 && score < 125) {
-    RANK.style.fontSize = '170px';
-    return 'C';
-  } else if (score >= 125 && score < 150) {
-    RANK.style.fontSize = '170px';
-    return 'B';
-  } else if (score >= 150 && score < 175) {
-    RANK.style.fontSize = '170px';
-    return 'B+';
-  } else if (score >= 175 && score < 200) {
-    RANK.style.fontSize = '170px';
-    return 'A';
-  } else if (score >= 200 && score < 225) {
-    RANK.style.fontSize = '170px';
-    return 'A+';
-  } else if (score >= 225 && score < 250) {
-    RANK.style.fontSize = '170px';
-    return 'S';
-  } else if (score >= 250 && score < 275) {
-    RANK.style.fontSize = '170px';
-    return 'S+';
-  } else if (score >= 275 && score < 300) {
-    RANK.style.fontSize = '170px';
-    return 'SS';
-  } else if (score >= 300 && score < 325) {
-    RANK.style.fontSize = '170px';
-    return 'SS+';
-  } else if (score >= 325 && score < 350) {
-    RANK.style.fontSize = '170px';
-    return 'SSS';
-  } else if (score >= 350 && score < 375) {
-    RANK.style.fontSize = '160px';
-    return 'SSS+';
-  } else if (score >= 375 && score < 400) {
-    RANK.style.fontSize = '170px';
-    return 'X';
-  } else if (score >= 400 && score < 425) {
-    RANK.style.fontSize = '170px';
-    return 'X+';
-  } else if (score >= 425 && score < 450) {
-    RANK.style.fontSize = '170px';
-    return 'XX';
-  } else if (score >= 450 && score < 475) {
-    RANK.style.fontSize = '170px';
-    return 'XX+';
-  } else if (score >= 475 && score < 500) {
-    RANK.style.fontSize = '160px';
-    return 'Fast';
-  } else if (score >= 500 && score < 525) {
-    RANK.style.fontSize = '140px';
-    return 'Quick';
-  } else if (score >= 525 && score < 550) {
-    RANK.style.fontSize = '140px';
-    return 'Adept';
-  } else if (score >= 550 && score < 575) {
-    RANK.style.fontSize = '130px';
-    return 'Expert';
-  } else if (score >= 575 && score < 600) {
-    RANK.style.fontSize = '140px';
-    return 'Sonic';
-  } else if (score >= 600 && score < 625) {
-    RANK.style.fontSize = '130px';
-    return 'Master';
-  } else if (score >= 625 && score < 650) {
-    RANK.style.fontSize = '140px';
-    return 'Comet';
-  } else if (score >= 650 && score < 675) {
-    RANK.style.fontSize = '120px';
-    return 'Thunder';
-  } else if (score >= 675 && score < 700) {
-    RANK.style.fontSize = '150px';
-    return 'Nova';
-  } else if (score >= 700 && score < 725) {
-    RANK.style.fontSize = '110px';
-    return 'Neutrino';
-  } else if (score >= 725 && score < 750) {
-    RANK.style.fontSize = '120px';
-    return 'Godhand';
-  } else if (score >= 750) {
-    RANK.style.fontSize = '150px';
-    return 'Zeus';
+  if (ENmode === true) return judgeEN();
+  else if (PGmode === true) return judgePG(score);
+  else {
+    if (score < 25) {
+      RANK.style.fontSize = '170px';
+      return 'G';
+    } else if (score >= 25 && score < 50) {
+      RANK.style.fontSize = '170px';
+      return 'F';
+    } else if (score >= 50 && score < 75) {
+      RANK.style.fontSize = '170px';
+      return 'E';
+    } else if (score >= 75 && score < 100) {
+      RANK.style.fontSize = '170px';
+      return 'D';
+    } else if (score >= 100 && score < 125) {
+      RANK.style.fontSize = '170px';
+      return 'C';
+    } else if (score >= 125 && score < 150) {
+      RANK.style.fontSize = '170px';
+      return 'B';
+    } else if (score >= 150 && score < 175) {
+      RANK.style.fontSize = '170px';
+      return 'B+';
+    } else if (score >= 175 && score < 200) {
+      RANK.style.fontSize = '170px';
+      return 'A';
+    } else if (score >= 200 && score < 225) {
+      RANK.style.fontSize = '170px';
+      return 'A+';
+    } else if (score >= 225 && score < 250) {
+      RANK.style.fontSize = '170px';
+      return 'S';
+    } else if (score >= 250 && score < 275) {
+      RANK.style.fontSize = '170px';
+      return 'S+';
+    } else if (score >= 275 && score < 300) {
+      RANK.style.fontSize = '170px';
+      return 'SS';
+    } else if (score >= 300 && score < 325) {
+      RANK.style.fontSize = '170px';
+      return 'SS+';
+    } else if (score >= 325 && score < 350) {
+      RANK.style.fontSize = '170px';
+      return 'SSS';
+    } else if (score >= 350 && score < 375) {
+      RANK.style.fontSize = '160px';
+      return 'SSS+';
+    } else if (score >= 375 && score < 400) {
+      RANK.style.fontSize = '170px';
+      return 'X';
+    } else if (score >= 400 && score < 425) {
+      RANK.style.fontSize = '170px';
+      return 'X+';
+    } else if (score >= 425 && score < 450) {
+      RANK.style.fontSize = '170px';
+      return 'XX';
+    } else if (score >= 450 && score < 475) {
+      RANK.style.fontSize = '170px';
+      return 'XX+';
+    } else if (score >= 475 && score < 500) {
+      RANK.style.fontSize = '160px';
+      return 'Fast';
+    } else if (score >= 500 && score < 525) {
+      RANK.style.fontSize = '140px';
+      return 'Quick';
+    } else if (score >= 525 && score < 550) {
+      RANK.style.fontSize = '140px';
+      return 'Adept';
+    } else if (score >= 550 && score < 575) {
+      RANK.style.fontSize = '130px';
+      return 'Expert';
+    } else if (score >= 575 && score < 600) {
+      RANK.style.fontSize = '140px';
+      return 'Sonic';
+    } else if (score >= 600 && score < 625) {
+      RANK.style.fontSize = '130px';
+      return 'Master';
+    } else if (score >= 625 && score < 650) {
+      RANK.style.fontSize = '140px';
+      return 'Comet';
+    } else if (score >= 650 && score < 675) {
+      RANK.style.fontSize = '120px';
+      return 'Thunder';
+    } else if (score >= 675 && score < 700) {
+      RANK.style.fontSize = '150px';
+      return 'Nova';
+    } else if (score >= 700 && score < 725) {
+      RANK.style.fontSize = '110px';
+      return 'Neutrino';
+    } else if (score >= 725 && score < 750) {
+      RANK.style.fontSize = '120px';
+      return 'Godhand';
+    } else if (score >= 750) {
+      RANK.style.fontSize = '150px';
+      return 'Zeus';
+    }
   }
 }

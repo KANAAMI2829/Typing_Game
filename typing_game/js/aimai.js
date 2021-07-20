@@ -37,7 +37,7 @@ function aimai() {
   aimaiProcess(hiragana);
   Romaji = ROMAJI.textContent;
 
-  // 以下ひらがなが打ち終わっているかを判別する処理
+  // 今打つべきひらがなが打ち終わっているかを判別する処理
   if (Object.keys(ROMAJI_TABLE_4).indexOf(Three_Letters) !== -1
     && ROMAJI_TABLE_4[Three_Letters].indexOf(TypedKey) !== -1) {
     changeTypedHiraganaColor(typeHiraganaSearch(Hiragana_Next_3 + Hiragana_Next_4 + Hiragana_Next_5));
