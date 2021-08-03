@@ -9,12 +9,17 @@
   </head>
   <body>
     <header>
-      <div class="info">
-        <a id="Home_Button" class="homeButton">
-          <img src="img/HOME_Button.svg" width="32.35" height="53.8" alt="HOMEボタン">
+      <div id="Info_Left">
+        <a class="homeButton" id="Home_Button">
+          <img src="img/HOME_Button.svg" width="32.35px" height="53.8px" alt="HOMEボタン">
         </a>
-        <a id="Settings_Button" class="settings">
-          <img src="img/Settings.svg" width="60" height="53.8" alt="設定ボタン">
+        <a class="settings" id="Settings_Button">
+          <img src="img/Settings.svg" width="60px" height="53.8px" alt="設定ボタン">
+        </a>
+      </div>
+      <div id="Info_Right">
+        <a class="helpButton" id="Help_Button">
+          <img src="img/Help_Button.svg" width="46px" alt="HELPボタン">
         </a>
       </div>
     </header><hr id="Header_hr">
@@ -31,7 +36,7 @@
             </select>
           </div>
           <div id="en_dtl" hidden>
-            <div class="details_Setting">
+            <div class="detailsSetting">
               <h2>学習範囲</h2>
               <select name="Grade" id="Grade">
                 <option value="jhs1">中一</option>
@@ -44,7 +49,7 @@
             </div>
           </div>
           <div id="pg_dtl" hidden>
-            <div class="details_Setting">
+            <div class="detailsSetting">
               <h2>分野・言語</h2>
               <select name="Lang" id="Lang">
                 <option value="js">JavaScript</option>
@@ -71,6 +76,55 @@
           <h2>パスワード変更</h2>
         </div> -->
       </div>
+    </section>
+    <section id="Help_Popup" hidden>
+      <div class="popupInner">
+        <div class="returnButton" id="Return_Button"></div>
+        <div class="closeButton" id="Close_Button">
+          <img src="img/Cross.svg" alt="閉じるボタン">
+        </div>
+        <div id="Help_Contents">
+          <a id="Menu">
+            <div id="Help_Title">ヘルプメニュー</div>
+            <div class="menuContents" id="Menu1">
+              <p><div class="triangle"></div> 基本的な操作方法について</p>
+            </div>
+            <div class="menuContents" id="Menu2">
+              <p><div class="triangle"></div> モードについて</p>
+            </div>
+            <div class="menuContents" id="Menu3">
+              <p><div class="triangle"></div> ランクの目安について</p>
+            </div>
+          </a>
+          <div id="Slides" hidden>
+            <div class="left_Arrow" id="Left_Arrow" hidden>
+              <img src="img/Arrow.svg" alt="前に戻るボタン">
+            </div>
+            <div class="right_Arrow" id="Right_Arrow">
+              <img src="img/Arrow.svg" alt="次に進むボタン">
+            </div>
+            <a class="slide" id="Instr_1" hidden>
+              <img src="img/Help_img1.png" alt="ホームボタンの画像">
+              <div>
+                Homeボタンを押すことで、どんな状況からでも<br>最初の画面に戻ることができます。
+              </div>
+            </a>
+            <a class="slide" id="Instr_2" hidden>
+              <img src="img/Help_img2.png" alt="設定ボタンの画像">
+              <div>
+                Settingsボタンを押すことで、ゲーム途中でなければ<br>設定画面に行くことができます。
+              </div>
+            </a>
+            <a class="slide" id="Instr_3" hidden>
+              <img src="img/Help_img3.png" alt="設定画面の画像">
+              <div>
+                設定が終わった後、Homeボタンを押すことで<br>変更が適用されます。
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="background" id="Background"></div>
     </section>
     <main id="Typing_Game">
       <div id="Timer_Space">
@@ -116,14 +170,16 @@
     <script src="js/romajiTable.js"></script>
     <script src="js/main.js"></script>
     <script src="js/settingFunctions.js"></script>
+    <script src="js/helpPopupFunctions.js"></script>
     <script src="js/gameFunctions.js"></script>
     <script src="js/ENmodeFunctions.js"></script>
     <script src="js/PGmodeFunctions.js"></script>
     <script src="js/aimai.js"></script>
     <script src="js/aimaiProcess.js"></script>
     <script src="js/animations.js"></script>
+    <script src="js/helpSlideAnimations.js"></script>
   </body>
-  <footer>
+  <!-- <footer>
     <div id="Copyright"><span>© 2021 kanaami</span></div>
-  </footer>
+  </footer> -->
 </html>

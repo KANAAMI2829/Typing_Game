@@ -1,5 +1,7 @@
 'use strict';
 
+GAME_MODE.addEventListener('change', () => selectChange());
+
 function goSettings() {
   if (isSetting === false && isPlaying === false) {
     if (isReady === false && isRestartReady === false) return;

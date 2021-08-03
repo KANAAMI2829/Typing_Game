@@ -1,5 +1,6 @@
 'use strict';
 
+const HOME_BUTTON       = document.getElementById('Home_Button');
 const SETTINGS_BUTTON   = document.getElementById('Settings_Button');
 const SETTINGS_SCREEN   = document.getElementById('Settings_Screen');
 const GAME_MODE         = document.getElementById('Game_Mode');
@@ -8,7 +9,11 @@ const GRADE             = document.getElementById('Grade');
 const PG_DTL            = document.getElementById('pg_dtl');
 const LANG              = document.getElementById('Lang');
 const TIME_LIMIT_VALUE  = document.getElementById('Time_Limit_Value');
-const HOME_BUTTON       = document.getElementById('Home_Button');
+const HELP_BUTTON       = document.getElementById('Help_Button');
+const HELP_POPUP        = document.getElementById('Help_Popup');
+const CLOSE_BUTTON      = document.getElementById('Close_Button');
+const MENU              = document.getElementById('Menu');
+const BACKGROUND        = document.getElementById('Background');
 const TYPING_GAME       = document.getElementById('Typing_Game');
 const TIMER_SPACE       = document.getElementById('Timer_Space');
 const TIMER             = document.getElementById('Timer');
@@ -41,6 +46,7 @@ let GOOD = document.getElementById('Good');
 let ACCURACY = document.getElementById('Accuracy');
 let TimeLimit = 30 * 1000;
 let isSetting = false;
+let isHelping = false;
 let isPlaying = false;
 let isRestartReady = false;
 let isReady = true;
@@ -62,11 +68,12 @@ let GoodCount;
 let MissCount;
 let CorrectCount = 0;
 
-SETTINGS_BUTTON.addEventListener('click', () => goSettings());
 
 HOME_BUTTON.addEventListener('click', () => returnHome());
 
-GAME_MODE.addEventListener('change', () => selectChange());
+SETTINGS_BUTTON.addEventListener('click', () => goSettings());
+
+HELP_BUTTON.addEventListener('click', () => goHelp());
 
 // ゲーム中の処理
 document.addEventListener('keydown', e => {
@@ -78,7 +85,7 @@ document.addEventListener('keydown', e => {
     }
   }
 
-  if (isSetting) return;
+  if (isSetting || isHelping) return;
 
   if (e.key === 'Escape' && isPlaying === true) startOver();
 
