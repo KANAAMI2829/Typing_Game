@@ -32,117 +32,107 @@ function gamePreparationEN(type_key) {
 }
 
 
-function judgeEN() {
+function judgeEN(score) {
   const RATE = document.getElementById('Rate');
   let correct = CorrectCount;
   let miss = MissCount;
   let total_problems_num = correct + miss; 
   let rate = ((correct / total_problems_num) * 100.0).toFixed(1);
-  let time = Number(TIME_LIMIT_VALUE.value);
-  let x = 0;
   
   RATE.textContent = rate;
-  WPM_RESULT.setAttribute('hide', '');
-  if (time === 600) x = 3;
-  else if (time === 240) x = 7.5;
-  else if (time === 120) x = 15;
-  else if (time === 90) x = 20;
-  else if (time === 60) x = 30;
-  else if (time === 30) x = 60;
-  else x = 90;
-  let score = correct * x;
+  WPM_RESULT.setAttribute('hidden', '');
 
-  if (score < 80) {
+  if (score < 25) {
     RANK.style.fontSize = '170px';
     return 'G';
-  } else if (score >= 80 && score < 160) {
+  } else if (score >= 25 && score < 50) {
     RANK.style.fontSize = '170px';
     return 'F';
-  } else if (score >= 160 && score < 240) {
+  } else if (score >= 50 && score < 75) {
     RANK.style.fontSize = '170px';
     return 'E';
-  } else if (score >= 240 && score < 320) {
+  } else if (score >= 75 && score < 100) {
     RANK.style.fontSize = '170px';
     return 'D';
-  } else if (score >= 320 && score < 400) {
+  } else if (score >= 100 && score < 125) {
     RANK.style.fontSize = '170px';
     return 'C';
-  } else if (score >= 400 && score < 480) {
+  } else if (score >= 125 && score < 150) {
     RANK.style.fontSize = '170px';
     return 'B';
-  } else if (score >= 480 && score < 560) {
+  } else if (score >= 150 && score < 175) {
     RANK.style.fontSize = '170px';
     return 'B+';
-  } else if (score >= 560 && score < 640) {
+  } else if (score >= 175 && score < 200) {
     RANK.style.fontSize = '170px';
     return 'A';
-  } else if (score >= 640 && score < 720) {
+  } else if (score >= 200 && score < 225) {
     RANK.style.fontSize = '170px';
     return 'A+';
-  } else if (score >= 720 && score < 800) {
+  } else if (score >= 225 && score < 250) {
     RANK.style.fontSize = '170px';
     return 'S';
-  } else if (score >= 800 && score < 880) {
+  } else if (score >= 250 && score < 275) {
     RANK.style.fontSize = '170px';
     return 'S+';
-  } else if (score >= 880 && score < 960) {
+  } else if (score >= 275 && score < 300) {
     RANK.style.fontSize = '170px';
     return 'SS';
-  } else if (score >= 960 && score < 1040) {
+  } else if (score >= 300 && score < 325) {
     RANK.style.fontSize = '170px';
     return 'SS+';
-  } else if (score >= 1040 && score < 1120) {
+  } else if (score >= 325 && score < 350) {
     RANK.style.fontSize = '170px';
     return 'SSS';
-  } else if (score >= 1120 && score < 1200) {
+  } else if (score >= 350 && score < 375) {
     RANK.style.fontSize = '160px';
     return 'SSS+';
-  } else if (score >= 1200 && score < 1200) {
+  } else if (score >= 375 && score < 400) {
     RANK.style.fontSize = '170px';
     return 'X';
-  } else if (score >= 1200 && score < 1280) {
+  } else if (score >= 400 && score < 425) {
     RANK.style.fontSize = '170px';
     return 'X+';
-  } else if (score >= 1280 && score < 1360) {
+  } else if (score >= 425 && score < 450) {
     RANK.style.fontSize = '170px';
     return 'XX';
-  } else if (score >= 1360 && score < 1440) {
+  } else if (score >= 450 && score < 475) {
     RANK.style.fontSize = '170px';
     return 'XX+';
-  } else if (score >= 1440 && score < 1520) {
+  } else if (score >= 475 && score < 500) {
     RANK.style.fontSize = '160px';
     return 'Fast';
-  } else if (score >= 1520 && score < 1600) {
+  } else if (score >= 500 && score < 525) {
     RANK.style.fontSize = '140px';
     return 'Quick';
-  } else if (score >= 1600 && score < 1680) {
+  } else if (score >= 525 && score < 550) {
     RANK.style.fontSize = '140px';
     return 'Adept';
-  } else if (score >= 1680 && score < 1760) {
+  } else if (score >= 550 && score < 575) {
     RANK.style.fontSize = '130px';
     return 'Expert';
-  } else if (score >= 1760 && score < 1840) {
+  } else if (score >= 575 && score < 600) {
     RANK.style.fontSize = '140px';
     return 'Sonic';
-  } else if (score >= 1840 && score < 1920) {
+  } else if (score >= 600 && score < 625) {
     RANK.style.fontSize = '130px';
     return 'Master';
-  } else if (score >= 1920 && score < 2000) {
+  } else if (score >= 625 && score < 650) {
     RANK.style.fontSize = '140px';
     return 'Comet';
-  } else if (score >= 2000 && score < 2080) {
+  } else if (score >= 650 && score < 675) {
     RANK.style.fontSize = '120px';
     return 'Thunder';
-  } else if (score >= 2080 && score < 2160) {
+  } else if (score >= 675 && score < 700) {
     RANK.style.fontSize = '150px';
     return 'Nova';
-  } else if (score >= 2160 && score < 2240) {
+  } else if (score >= 700 && score < 725) {
     RANK.style.fontSize = '110px';
     return 'Neutrino';
-  } else if (score >= 2240 && score < 2320) {
+  } else if (score >= 725 && score < 750) {
     RANK.style.fontSize = '120px';
     return 'Godhand';
-  } else if (score >= 2320) {
+  } else if (score >= 750) {
     RANK.style.fontSize = '150px';
     return 'Zeus';
   }

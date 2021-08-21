@@ -12,9 +12,8 @@ function goSettings() {
 
 function returnHome() {
   if (isRestartReady) {
-    restartAnimation();
+    restartNoneAnimation();
     isRestartReady = false;
-    return false;
   }
 
   if (isPlaying === true) startOver();

@@ -93,34 +93,158 @@
               <p><div class="triangle"></div> モードについて</p>
             </div>
             <div class="menuContents" id="Menu3">
-              <p><div class="triangle"></div> ランクの目安について</p>
+              <p><div class="triangle"></div> 結果画面について</p>
             </div>
           </a>
-          <div id="Slides" hidden>
+          <div id="Slides">
             <div class="left_Arrow" id="Left_Arrow" hidden>
               <img src="img/Arrow.svg" alt="前に戻るボタン">
             </div>
             <div class="right_Arrow" id="Right_Arrow">
               <img src="img/Arrow.svg" alt="次に進むボタン">
             </div>
-            <a class="slide" id="Instr_1" hidden>
-              <img src="img/Help_Instr1.png" alt="ホームボタンの画像">
-              <div>
-                Homeボタンを押すことで、どんな状況からでも<br>最初の画面に戻ることができます。
-              </div>
-            </a>
-            <a class="slide" id="Instr_2" hidden>
-              <img src="img/Help_Instr2.png" alt="設定ボタンの画像">
-              <div>
-                Settingsボタンを押すことで、ゲーム途中でなければ<br>設定画面に行くことができます。
-              </div>
-            </a>
-            <a class="slide" id="Instr_3" hidden>
-              <img src="img/Help_Instr3.png" alt="設定画面の画像">
-              <div>
-                設定が終わった後、Homeボタンを押すことで<br>変更が適用されます。
-              </div>
-            </a>
+            <div id="Instructions">
+              <a class="slide" id="Instr_1" hidden>
+                <img src="img/Help_Instr1.png" alt="ホームボタンの画像">
+                <div>
+                  Homeボタンを押すことで、どんな状況からでも<br>最初の画面に戻ることができます。
+                </div>
+              </a>
+              <a class="slide" id="Instr_2" hidden>
+                <img src="img/Help_Instr2.png" alt="設定ボタンの画像">
+                <div>
+                  Settingsボタンを押すことで、ゲーム途中でなければ<br>設定画面に行くことができます。
+                </div>
+              </a>
+              <a class="slide" id="Instr_3" hidden>
+                <img src="img/Help_Instr3.png" alt="設定画面の画像">
+                <div>
+                  設定が終わった後、Homeボタンを押すことで<br>変更が適用されます。
+                </div>
+              </a>
+              <a class="slide" id="Instr_4" hidden>
+                <div>
+                  <h1>ショートカットキー</h1>
+                  <ul>
+                    <li id="Shortcut1">ゲーム途中でやり直す
+                      <span id="ellipses1">…</span>
+                      <span class="key">ESCキー</span>
+                    </li>
+                    <li id="Shortcut2">結果画面からやり直す
+                      <span id="ellipses2">…</span>
+                      <span class="key">ESCキー、SPACEキー</span>
+                    </li>
+                    <li id="Shortcut3">設定画面に行く
+                      <span id="ellipses3">…</span>
+                      <span class="key">Sキー</span>
+                    </li>
+                    <li id="Shortcut4">設定を適用してHOMEに戻る
+                      <span id="ellipses4">…</span>
+                      <span class="key">Hキー</span>
+                    </li>
+                  </ul>
+                </div>
+              </a>
+            </div>
+            <div id="Mode">
+              <a class="slide" id="Mode_1" hidden>
+                <img src="img/Help_Mode1.png" alt="モード選択の画像">
+                <div>
+                  モードは日本語・英単語学習・プログラミング<br>の三つがあります。
+                </div>
+              </a>
+              <a class="slide" id="Mode_2" hidden>
+                <img src="img/Help_Mode2.png" alt="日本語モードのゲーム画面の画像">
+                <div>
+                  日本語モードは、出てきたお題をローマ字入力で<br>タイプするモードです。
+                </div>
+              </a>
+              <a class="slide" id="Mode_3" hidden>
+                <img src="img/Help_Mode3.png" alt="日本語モードのタイプスペースの画像">
+                <div>
+                  緑色の文字はすでに打ち終わった文字で<br>青色の文字は現在打っている文字です。
+                </div>
+              </a>
+              <a class="slide" id="Mode_4" hidden>
+                <img src="img/Help_Mode4.png" alt="英単語学習モードのゲーム画面の画像">
+                <div>
+                  英単語学習モードは、出てきた日本語を英訳して<br>そのスペルをタイプするモードです。
+                </div>
+              </a>
+              <a class="slide" id="Mode_5" hidden>
+                <img src="img/Help_Mode5.png" alt="英単語学習モードでミスしている画像">
+                <div>
+                  一度ミスをしたら打てていないスペルが<br>見えるようになります。
+                </div>
+              </a>
+              <a class="slide" id="Mode_6" hidden>
+                <img src="img/Help_Mode6.png" alt="英単語学習モードの正答数の画像">
+                <div>
+                  正答数は、正しくタイプした時ではなく<br>お題をミスせずに打ち終えた時に加算されます。
+                </div>
+              </a>
+              <a class="slide" id="Mode_7" hidden>
+                <img src="img/Help_Mode7.png" alt="英単語学習モードのミス数の画像">
+                <div>
+                  そのため、ミス数も一度ミスした後は<br>いくらミスしても加算されません。
+                </div>
+              </a>
+              <a class="slide" id="Mode_8" hidden>
+                <img src="img/Help_Mode8.png" alt="プログラミングモードのゲーム画面の画像">
+                <div>
+                  プログラミングモードは、各分野の頻出用語が<br>お題として出されるモードです。
+                </div>
+              </a>
+              <a class="slide" id="Mode_9" hidden>
+                <img src="img/Help_Mode9.png" alt="JavaScriptを選択した時のお題の画像">
+                <div>
+                  分野・言語でJavaScriptを選択すると<br>JavaScriptの頻出用語が
+                </div>
+              </a>
+              <a class="slide" id="Mode_10" hidden>
+                <img src="img/Help_Mode10.png" alt="C言語を選択した時のお題の画像">
+                <div>
+                  Cを選択するとC言語の頻出用語が<br>出題されます。
+                </div>
+              </a>
+              <a class="slide" id="Mode_11" hidden>
+                <img src="img/Help_Instr2.png" alt="設定ボタンの画像">
+                <div>
+                  ゲームのモード設定はSettingsボタンから<br>確認・変更することができます。
+                </div>
+              </a>
+            </div>
+            <div id="Result">
+              <a class="slide" id="Result_1" hidden>
+                <img src="img/Help_Result1.png" alt="日本語モードの結果画面の画像">
+                <div>
+                  日本語・プログラミングモードの<br>結果画面は共通です。
+                </div>
+              </a>
+              <a class="slide" id="Result_2" hidden>
+                <img src="img/Help_Result2.png" alt="結果画面の中のWPMの画像">
+                <div>
+                  WPMとは、一分間に何文字打てたかという数値で<br>タイピングの速さの指標になります。
+                </div>
+              </a>
+              <a class="slide" id="Result_3" hidden>
+                <img src="img/Help_Result3.png" alt="結果画面の中のスコアの画像">
+                <div>
+                  スコアは、WPMに正確率を考慮したものです。<br>正確性がかなり影響するので<br>なるべくミスをしないように打ちましょう。
+                </div>
+              </a>
+              <a class="slide" id="Result_4" hidden>
+                <img src="img/Help_Result4.png" alt="結果画面の中のスコアの画像">
+                <div>
+                  ランクはそのモードでの腕前を表しています。<br>まずはAランク以上を目指してみましょう。
+                </div>
+              </a>
+              <a class="slide" id="Result_5" hidden>
+                <div>
+                  <img src="img/RankList.png" alt="ランク一覧の画像">
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -139,9 +263,9 @@
         </div>
         <div id="Hiragana_Space">
           <span></span>
-          <span id="Typed_Hiragana" style="color: #479400;" >
-          </span><span id="Now_Hiragana" style="color: #0f4f94;" >
-          </span><span id="Hiragana" style="color: #878f99;" ></span>
+          <span id="Typed_Hiragana" style="color: #479400;">
+          </span><span id="Now_Hiragana" style="color: #0f4f94;">
+          </span><span id="Hiragana" style="color: #878f99;"></span>
         </div>
         <div id="Romaji_Space">
           <span id="Typed_Romaji" style="color: #479400;">

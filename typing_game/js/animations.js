@@ -89,8 +89,24 @@ function finishAnimation() {
   GoodCount = Number(GoodCount);
   MissCount = Number(MissCount);
   const WPM_VALUE = ((GoodCount / TimeLimit) * 60) * 1000;
-  const ACCURACY_RATE = (GoodCount + MissCount) === 0 ? 0 : (GoodCount / (GoodCount + MissCount)) * 100.0;
-  const SCORE_VALUE = WPM_VALUE * ((ACCURACY_RATE.toFixed(2) / 100) ** 3);
+  let ACCURACY_RATE;
+  let SCORE_VALUE;
+  if (ENmode === false) {
+    ACCURACY_RATE = (GoodCount + MissCount) === 0 ? 0 : (GoodCount / (GoodCount + MissCount)) * 100.0;
+    SCORE_VALUE = (WPM_VALUE * ((ACCURACY_RATE.toFixed(2) / 100) ** 3)).toFixed(0);
+  } else {
+    let x;
+    const TIME = Number(TIME_LIMIT_VALUE.value);
+    if (TIME === 600) x = 1;
+    else if (TIME === 240) x = 2.5;
+    else if (TIME === 120) x = 5;
+    else if (TIME === 90) x = 7;
+    else if (TIME === 60) x = 10;
+    else if (TIME === 30) x = 20;
+    else x = 30;
+    ACCURACY_RATE = (CorrectCount + MissCount) === 0 ? 0 : (CorrectCount / (CorrectCount + MissCount)) * 100.0;
+    SCORE_VALUE = ((CorrectCount * x) * ((ACCURACY_RATE.toFixed(2) / 100) ** 2)).toFixed(0);
+  }
 
   // 直列処理を行うためにPromiseオブジェクトを使用
   let promise = new Promise((resolve, reject) => {
@@ -106,7 +122,7 @@ function finishAnimation() {
     Finish = document.getElementById('Finish');
     WPM.textContent = WPM_VALUE.toFixed(0);
     ACCURACY.textContent = ACCURACY_RATE.toFixed(2);
-    SCORE.textContent = SCORE_VALUE.toFixed(0);
+    SCORE.textContent = SCORE_VALUE;
     RANK.textContent = judgeRank(SCORE.textContent);
 
     setTimeout(() => {
@@ -357,7 +373,7 @@ function restartAnimation() {
       fill: 'forwards'
     })
     GOOD_COUNTER.animate({
-      top: 0,
+      top: '0',
       right: '220px'
     },{
       duration: 800,
@@ -474,14 +490,13 @@ function restartNoneAnimation() {
       fontSize: '30px'
     },{
       duration: 0,
-      easing: 'ease-in-out',
       fill: 'forwards'
     })
     GOOD_COUNTER.animate({
+      top: '0',
       right: '220px'
     },{
       duration: 0,
-      easing: 'ease-in-out',
       fill: 'forwards'
     })
     MISS_COUNTER.animate({
@@ -489,7 +504,6 @@ function restartNoneAnimation() {
       right: '0'
     },{
       duration: 0,
-      easing: 'ease-in-out',
       fill: 'forwards'
     })
     WPM_RESULT.animate({
@@ -498,7 +512,6 @@ function restartNoneAnimation() {
       opacity: [1, 0]
     },{
       duration: 0,
-      easing: 'ease-in-out',
       fill: 'forwards'
     })
     ACCURACY_RESULT.animate({
@@ -507,7 +520,6 @@ function restartNoneAnimation() {
       opacity: [1, 0]
     },{
       duration: 0,
-      easing: 'ease-in-out',
       fill: 'forwards'
     })
     SCORE_RESULT.animate({
@@ -516,7 +528,6 @@ function restartNoneAnimation() {
       opacity: [1, 0]
     },{
       duration: 0,
-      easing: 'ease-in-out',
       fill: 'forwards'
     })
     RANK_SPACE.animate({
@@ -526,7 +537,12 @@ function restartNoneAnimation() {
       fontSize: '0'
     },{
       duration: 0,
-      easing: 'ease-in-out',
+      fill: 'forwards'
+    })
+    RANK.animate({
+      opacity: [1, 0]
+    },{
+      duration: 0,
       fill: 'forwards'
     })
     RESTART.animate({
@@ -547,14 +563,12 @@ function restartNoneAnimation() {
         opacity: [0, 1]
       },{
         duration: 0,
-        easing: 'ease-in-out',
         fill: 'forwards'
       })
       JAPANESE.animate({
         opacity: [0, 1]
       },{
         duration: 0,
-        easing: 'ease-in-out',
         fill: 'forwards'
       })
       isReady = true;

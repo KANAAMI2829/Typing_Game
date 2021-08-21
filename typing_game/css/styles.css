@@ -177,8 +177,8 @@ select {
   transform: translate(-50%, -50%);
   width: 75%;
   height: 65%;
-  max-width: 850px;
-  min-width: 650px;
+  max-width: 900px;
+  min-width: 700px;
   max-height: 550px;
   min-height: 400px;
   padding: 50px;
@@ -295,8 +295,74 @@ select {
   transform: translate(-50%, -50%);
 }
 
-#Instr_1, #Instr_2, #Instr_3 {
+
+.slide h1 {
+  margin: 35px 0;
+}
+
+#Instr_1, #Instr_2, #Instr_3, #Instr_4 {
   opacity: 0;
+}
+
+#Instr_4 div {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 590px;
+  transform: translateX(-50%);
+}
+
+#Instr_4 div li {
+  list-style-type: none;
+  padding: 15px 0;
+  text-align: start;
+}
+
+#Instr_4 div li span {
+  display: inline-block;
+}
+
+#ellipses1, #ellipses2 {
+  padding-left: 66px;
+}
+
+#ellipses3 {
+  padding-left: 132px;
+}
+
+#ellipses4 {
+  padding-left: 22px;
+}
+.key {
+  padding-left: 22px;
+}
+
+#Mode_1, #Mode_2, #Mode_3, #Mode_4, #Mode_5, #Mode_6, #Mode_7, #Mode_8, #Mode_9, #Mode_10, #Mode_11 {
+  opacity: 0;
+}
+
+#Mode_1 img {
+  width: 350px;
+}
+
+#Result_1, #Result_2, #Result_3, #Result_4, #Result_5 {
+  opacity: 0;
+}
+
+#Result_5 div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 540px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px gray;
+  overflow: scroll;
+}
+
+#Result_5 img {
+  position: absolute;
+  top: 498px;
 }
 
 .left_Arrow {

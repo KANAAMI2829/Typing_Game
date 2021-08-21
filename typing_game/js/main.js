@@ -85,7 +85,11 @@ document.addEventListener('keydown', e => {
     }
   }
 
+  if (e.key === 'h' && isSetting) returnHome();
+
   if (isSetting || isHelping) return;
+
+  if (e.key === 's' && isPlaying === false) goSettings();
 
   if (e.key === 'Escape' && isPlaying === true) startOver();
 

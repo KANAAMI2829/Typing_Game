@@ -202,7 +202,7 @@ function startOver() {
 // ここでのswitch文はバグを招きかねないので不使用
 function judgeRank(score) {
   score = Number(score);
-  if (ENmode === true) return judgeEN();
+  if (ENmode === true) return judgeEN(score);
   else if (PGmode === true) return judgePG(score);
   else {
     if (score < 25) {

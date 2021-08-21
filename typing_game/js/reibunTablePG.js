@@ -220,7 +220,7 @@ const PG_REIBUN_TABLE_JS = [
   ['readAsArrayBuffer','readAsArrayBuffer'],
   ['readAsText','readAsText'],
   ['readystate','readystate'],
-  ['ReferenceError',''],
+  ['ReferenceError','ReferenceError'],
   ['test','test'],
   ['remove','remove'],
   ['removeAttr','removeAttr'],
