@@ -3,14 +3,15 @@
 const HOME_BUTTON       = document.getElementById('Home_Button');
 const SETTINGS_BUTTON   = document.getElementById('Settings_Button');
 const SETTINGS_SCREEN   = document.getElementById('Settings_Screen');
+const CHECKMARK_BUTTON  = document.getElementById('CheckMark_Button');
+const HELP_BUTTON       = document.getElementById('Help_Button');
+const HELP_POPUP        = document.getElementById('Help_Popup');
 const GAME_MODE         = document.getElementById('Game_Mode');
 const EN_DTL            = document.getElementById('en_dtl');
 const GRADE             = document.getElementById('Grade');
 const PG_DTL            = document.getElementById('pg_dtl');
 const LANG              = document.getElementById('Lang');
 const TIME_LIMIT_VALUE  = document.getElementById('Time_Limit_Value');
-const HELP_BUTTON       = document.getElementById('Help_Button');
-const HELP_POPUP        = document.getElementById('Help_Popup');
 const CLOSE_BUTTON      = document.getElementById('Close_Button');
 const MENU              = document.getElementById('Menu');
 const BACKGROUND        = document.getElementById('Background');
@@ -20,6 +21,9 @@ const TIMER             = document.getElementById('Timer');
 const COUNT_DOWN        = document.getElementById('Count_Down');
 const COUNT_DOWN_NUMBER = document.getElementById('Count_Down_Number');
 const JAPANESE          = document.getElementById('Japanese');
+const SETTING_STATE     = document.getElementById('Setting_State');
+const STATE_MODE        = document.getElementById('State_Mode');
+const STATE_TIMELIMIT   = document.getElementById('State_TimeLimit');
 const HIRAGANA_SPACE    = document.getElementById('Hiragana_Space');
 const HIRAGANA          = document.getElementById('Hiragana');
 const NOW_HIRAGANA      = document.getElementById('Now_Hiragana');
@@ -72,6 +76,8 @@ let CorrectCount = 0;
 HOME_BUTTON.addEventListener('click', () => returnHome());
 
 SETTINGS_BUTTON.addEventListener('click', () => goSettings());
+
+CHECKMARK_BUTTON.addEventListener('click', () => returnHome());
 
 HELP_BUTTON.addEventListener('click', () => goHelp());
 

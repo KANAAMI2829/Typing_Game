@@ -185,6 +185,7 @@ function startOver() {
   init();
   isReady = true;
   HIRAGANA_SPACE.removeAttribute('hidden');
+  SETTING_STATE.style = '';
   TYPED_HIRAGANA.style.fontSize = '26px';
   ROMAJI.style.color = '#a7b1be';
   COUNT_DOWN_NUMBER.textContent = '';

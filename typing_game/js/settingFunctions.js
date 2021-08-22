@@ -19,10 +19,10 @@ function returnHome() {
   if (isPlaying === true) startOver();
 
   if (isSetting !== true) return;
-
   if (GAME_MODE.value === 'ja') {
     GOOD_COUNTER.innerHTML = '打鍵数: <span id="Good">0</span>';
     ACCURACY_RESULT.innerHTML = '正確率: <span id="Accuracy">0</span>%';
+    STATE_MODE.textContent = '日本語';
     GOOD = document.getElementById('Good');
     ACCURACY = document.getElementById('Accuracy');
     ENmode = false;
@@ -30,17 +30,20 @@ function returnHome() {
   } else if (GAME_MODE.value === 'en') {
     GOOD_COUNTER.innerHTML = '正答数: <span id="Correct">0</span>';
     ACCURACY_RESULT.innerHTML = '正答率: <span id="Rate">0</span>%';
+    STATE_MODE.textContent = '英単語学習';
     ENmode = true;
     PGmode = false;
   } else if (GAME_MODE.value === 'pg') {
     GOOD_COUNTER.innerHTML = '打鍵数: <span id="Good">0</span>';
     ACCURACY_RESULT.innerHTML = '正確率: <span id="Accuracy">0</span>%';
+    STATE_MODE.textContent = 'プログラミング';
     GOOD = document.getElementById('Good');
     ACCURACY = document.getElementById('Accuracy');
     PGmode = true;
     ENmode = false;
   }
-
+  
+  STATE_TIMELIMIT.textContent = TIME_LIMIT_VALUE.value;
   TimeLimit = Number(TIME_LIMIT_VALUE.value) * 1000;
   isSetting = false;
   returnAnimation();

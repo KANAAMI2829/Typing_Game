@@ -58,6 +58,7 @@ function returnAnimation() {
 function countDownAnimation(count_num) {
   COUNT_DOWN_NUMBER.textContent = count_num--;
   COUNT_DOWN.style.opacity = '1';
+  SETTING_STATE.style = 'display: none; opacity: 0;';
   let StopId = setInterval(() => {
     if (count_num === 0) {
     isPlaying = true;
@@ -339,6 +340,7 @@ function restartAnimation() {
     const CORRECT = document.getElementById('Correct');
     Finish.id = 'Count_Down';
     HIRAGANA_SPACE.removeAttribute('hidden');
+    SETTING_STATE.style = 'opacity: 0';
     TYPED_HIRAGANA.style.color = '#479400';
     TYPED_HIRAGANA.style.fontSize = '26px';
     ROMAJI.style.color = '#a7b1be';
@@ -456,6 +458,13 @@ function restartAnimation() {
           easing: 'ease-in-out',
           fill: 'forwards'
         })
+        SETTING_STATE.animate({
+          opacity: [0, 1]
+        },{
+          duration: 300,
+          easing: 'ease-in-out',
+          fill: 'forwards'
+        })
         setTimeout(() => {
           isReady = true;
         }, 400)
@@ -471,6 +480,7 @@ function restartNoneAnimation() {
   let promise = new Promise((resolve, reject) => {
     Finish.id = 'Count_Down';
     HIRAGANA_SPACE.removeAttribute('hidden');
+    SETTING_STATE.style = '';
     TYPED_HIRAGANA.style.color = '#479400';
     TYPED_HIRAGANA.style.fontSize = '26px';
     ROMAJI.style.color = '#a7b1be';

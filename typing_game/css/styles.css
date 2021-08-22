@@ -136,6 +136,7 @@ select {
   width: 130px;
   height: 36px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 #Settings_hr {
@@ -159,6 +160,21 @@ select {
   margin-bottom: 4.5px;
 }
 
+.checkMarkButton{
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: 30px auto 0 auto;
+  width: 120px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.checkMarkButton:hover {
+  transform: scale(1.06);
+  backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
 /* ヘルプポップアップのスタイル */
 
 #Help_Popup {
@@ -455,6 +471,19 @@ select {
   font-size: 34px;
 }
 
+#Setting_State {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  color: #666;
+  font-size: 20px;
+}
+
+.settingStateMode {
+  margin-right: 20px;
+}
+
 #Hiragana_Space {
   font-size: 26px;
 }
@@ -560,11 +589,3 @@ select {
   font-size: 30px;
 }
 
-#Copyright {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, -50%);
-  font-size: 14px;
-  color: #666;
-}
