@@ -613,7 +613,7 @@ const EN_REIBUN_TABLE_JHS_2 = [
   ['piece','断片，欠片'],
   ['circle','円'],
   ['program','番組'],
-  ['post','郵便'],
+  ['post','郵便(イギリス英語)'],
   ['noise','雑音，騒音'],
   ['law','法律'],
   ['front','前面'],

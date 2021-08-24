@@ -77,7 +77,6 @@
     </section>
     <section id="Help_Popup" hidden>
       <div class="popupInner">
-        <div class="returnButton" id="Return_Button"></div>
         <div class="closeButton" id="Close_Button">
           <img src="img/Cross.svg" alt="閉じるボタン">
         </div>
@@ -94,7 +93,10 @@
               <p><div class="triangle"></div> 結果画面について</p>
             </div>
           </a>
-          <div id="Slides">
+          <div id="Slides" hidden>
+            <div class="return_Arrow" id="Return_Arrow" hidden>
+              <img src="img/Return_Arrow.svg" alt="ヘルプメニューに戻るボタン">
+            </div>
             <div class="left_Arrow" id="Left_Arrow" hidden>
               <img src="img/Arrow.svg" alt="前に戻るボタン">
             </div>
@@ -228,7 +230,7 @@
               <a class="slide" id="Result_3" hidden>
                 <img src="img/Help_Result3.png" alt="結果画面の中のスコアの画像">
                 <div>
-                  スコアは、WPMに正確率を考慮したものです。<br>正確性がかなり影響するので<br>なるべくミスをしないように打ちましょう。
+                  スコアは、WPMに正確率を考慮したものです。<br>正確率がかなり影響するので<br>なるべくミスをしないように打ちましょう。
                 </div>
               </a>
               <a class="slide" id="Result_4" hidden>
@@ -260,8 +262,10 @@
           <span id="Japanese">スペースキーを押してスタート</span>
         </div>
         <div id="Setting_State">
-          <div class="settingStateMode">モード: <span id="State_Mode">日本語</span></div>
           <div class="settingStateTimeLimit">制限時間: <span id="State_TimeLimit">60</span>秒</div>
+          <div class="settingStateMode">
+            モード: <span id="State_Mode">日本語</span><span id="State_Detail"></span>
+          </div>
         </div>
         <div id="Hiragana_Space">
           <span id="Typed_Hiragana" style="color: #479400;">

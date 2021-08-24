@@ -587,4 +587,3 @@ function restartNoneAnimation() {
     alert('エラーが発生しました。ページを再読み込みしてください。');
   })
 }
-

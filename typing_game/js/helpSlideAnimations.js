@@ -41,6 +41,13 @@ function openSlideAnimation(menu_num) {
         fill: 'forwards'
       })
     }
+    RETURN_ARROW.animate({
+      opacity: [0, 1]
+    }, {
+      duration: 300,
+      easing: 'ease',
+      fill: 'forwards'
+    })
     RIGHT_ARROW.animate({
       opacity: [0, 1]
     }, {

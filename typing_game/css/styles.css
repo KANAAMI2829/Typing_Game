@@ -381,6 +381,26 @@ select {
   top: 498px;
 }
 
+.return_Arrow {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  height: 77px;
+  opacity: 0;
+  transform: rotate(180deg);
+  transition: 0.3s;
+  z-index: 1;
+}
+
+.return_Arrow:hover {
+  transform: scale(1.1) rotate(180deg);
+}
+
+.return_Arrow img {
+  width: 77px;
+  filter: invert(24%) sepia(0%) saturate(1966%) hue-rotate(119deg) brightness(108%) contrast(82%);
+}
+
 .left_Arrow {
   position: absolute;
   width: 120px;
@@ -480,7 +500,7 @@ select {
   font-size: 20px;
 }
 
-.settingStateMode {
+.settingStateTimeLimit {
   margin-right: 20px;
 }
 
@@ -588,4 +608,3 @@ select {
   opacity: 0;
   font-size: 30px;
 }
-

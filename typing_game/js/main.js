@@ -12,6 +12,7 @@ const GRADE             = document.getElementById('Grade');
 const PG_DTL            = document.getElementById('pg_dtl');
 const LANG              = document.getElementById('Lang');
 const TIME_LIMIT_VALUE  = document.getElementById('Time_Limit_Value');
+const RETURN_ARROW      = document.getElementById('Return_Arrow');
 const CLOSE_BUTTON      = document.getElementById('Close_Button');
 const MENU              = document.getElementById('Menu');
 const BACKGROUND        = document.getElementById('Background');
@@ -23,6 +24,7 @@ const COUNT_DOWN_NUMBER = document.getElementById('Count_Down_Number');
 const JAPANESE          = document.getElementById('Japanese');
 const SETTING_STATE     = document.getElementById('Setting_State');
 const STATE_MODE        = document.getElementById('State_Mode');
+const STATE_DETAIL      = document.getElementById('State_Detail');
 const STATE_TIMELIMIT   = document.getElementById('State_TimeLimit');
 const HIRAGANA_SPACE    = document.getElementById('Hiragana_Space');
 const HIRAGANA          = document.getElementById('Hiragana');
@@ -48,7 +50,7 @@ const RESTART           = document.getElementById('Restart');
 
 let GOOD = document.getElementById('Good');
 let ACCURACY = document.getElementById('Accuracy');
-let TimeLimit = 30 * 1000;
+let TimeLimit = 60 * 1000;
 let isSetting = false;
 let isHelping = false;
 let isPlaying = false;
@@ -77,9 +79,9 @@ HOME_BUTTON.addEventListener('click', () => returnHome());
 
 SETTINGS_BUTTON.addEventListener('click', () => goSettings());
 
-CHECKMARK_BUTTON.addEventListener('click', () => returnHome());
-
 HELP_BUTTON.addEventListener('click', () => goHelp());
+
+CHECKMARK_BUTTON.addEventListener('click', () => returnHome());
 
 // ゲーム中の処理
 document.addEventListener('keydown', e => {
