@@ -70,62 +70,60 @@ function goHelp() {
 }
 
 function helpInit(pushed_button) {
-  setTimeout (() => {
-    if (pushed_button === 'close') HELP_POPUP.setAttribute('hidden', '');
-    SLIDES.setAttribute('hidden', '');
-    INSTR_1.setAttribute('hidden', '');
-    INSTR_2.setAttribute('hidden', '');
-    INSTR_3.setAttribute('hidden', '');
-    INSTR_4.setAttribute('hidden', '');
-    MODE_1.setAttribute('hidden', '');
-    MODE_2.setAttribute('hidden', '');
-    MODE_3.setAttribute('hidden', '');
-    MODE_4.setAttribute('hidden', '');
-    MODE_5.setAttribute('hidden', '');
-    MODE_6.setAttribute('hidden', '');
-    MODE_7.setAttribute('hidden', '');
-    MODE_8.setAttribute('hidden', '');
-    MODE_9.setAttribute('hidden', '');
-    MODE_10.setAttribute('hidden', '');
-    MODE_11.setAttribute('hidden', '');
-    RESULT_1.setAttribute('hidden', '');
-    RESULT_2.setAttribute('hidden', '');
-    RESULT_3.setAttribute('hidden', '');
-    RESULT_4.setAttribute('hidden', '');
-    RESULT_5.setAttribute('hidden', '');
-    RETURN_ARROW.setAttribute('hidden', '');
-    LEFT_ARROW.setAttribute('hidden', '');
-    MENU.removeAttribute('hidden');
-    RIGHT_ARROW.removeAttribute('hidden');
-    if (pushed_button === 'close') MENU.animate({opacity: 1}, {duration: 0, fill: 'forwards'});
-    else MENU.animate({opacity: [0, 1]}, {duration: 300, easing: 'ease', fill: 'forwards'});
-    INSTR_1.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    INSTR_2.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    INSTR_3.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    INSTR_4.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_1.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_2.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_3.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_4.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_5.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_6.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_7.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_8.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_9.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_10.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    MODE_11.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    RESULT_1.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    RESULT_2.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    RESULT_3.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    RESULT_4.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    RESULT_5.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    RETURN_ARROW.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    RIGHT_ARROW.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
-    isAnimationNow = false;
-    isHelping = false;
-    menu_num = 0;
-    nowSlideNum = 1;
-  }, 500);
+  if (pushed_button === 'close') HELP_POPUP.setAttribute('hidden', '');
+  SLIDES.setAttribute('hidden', '');
+  INSTR_1.setAttribute('hidden', '');
+  INSTR_2.setAttribute('hidden', '');
+  INSTR_3.setAttribute('hidden', '');
+  INSTR_4.setAttribute('hidden', '');
+  MODE_1.setAttribute('hidden', '');
+  MODE_2.setAttribute('hidden', '');
+  MODE_3.setAttribute('hidden', '');
+  MODE_4.setAttribute('hidden', '');
+  MODE_5.setAttribute('hidden', '');
+  MODE_6.setAttribute('hidden', '');
+  MODE_7.setAttribute('hidden', '');
+  MODE_8.setAttribute('hidden', '');
+  MODE_9.setAttribute('hidden', '');
+  MODE_10.setAttribute('hidden', '');
+  MODE_11.setAttribute('hidden', '');
+  RESULT_1.setAttribute('hidden', '');
+  RESULT_2.setAttribute('hidden', '');
+  RESULT_3.setAttribute('hidden', '');
+  RESULT_4.setAttribute('hidden', '');
+  RESULT_5.setAttribute('hidden', '');
+  RETURN_ARROW.setAttribute('hidden', '');
+  LEFT_ARROW.setAttribute('hidden', '');
+  MENU.removeAttribute('hidden');
+  RIGHT_ARROW.removeAttribute('hidden');
+  if (pushed_button === 'close') MENU.animate({opacity: 1}, {duration: 0, fill: 'forwards'});
+  else MENU.animate({opacity: [0, 1]}, {duration: 300, easing: 'ease', fill: 'forwards'});
+  INSTR_1.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  INSTR_2.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  INSTR_3.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  INSTR_4.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_1.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_2.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_3.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_4.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_5.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_6.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_7.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_8.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_9.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_10.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  MODE_11.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  RESULT_1.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  RESULT_2.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  RESULT_3.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  RESULT_4.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  RESULT_5.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  RETURN_ARROW.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  RIGHT_ARROW.animate({opacity: 0}, {duration: 0, fill: 'forwards'});
+  isAnimationNow = false;
+  isHelping = false;
+  menu_num = 0;
+  nowSlideNum = 1;
 }
 
 function returnHelpMenuAnimation() {
@@ -133,11 +131,11 @@ function returnHelpMenuAnimation() {
   SLIDES.animate({
     opacity: [1, 0]
   }, {
-    duration: 500,
+    duration: 300,
     easing: 'ease',
     fill: 'forwards'
   })
-  helpInit('return');
+  setTimeout(() => helpInit('return'), 300);
 }
 
 function closeHelpAnimation() {
@@ -149,7 +147,7 @@ function closeHelpAnimation() {
     easing: 'ease',
     fill: 'forwards'
   })
-  helpInit('close');
+  setTimeout(() => helpInit('close'), 500);
 }
 
 function openSlide() {
