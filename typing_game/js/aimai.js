@@ -28,12 +28,8 @@ function aimai() {
   Next_Three_Letters = Hiragana_Next + Hiragana_Next_2 + Hiragana_Next_3;
   Next_Two_Letters   = Hiragana_Next + Hiragana_Next_2;
 
-  if (HIRAGANA.textContent === '' && NOW_HIRAGANA.textContent === '') {
-    return;
-  }
-  if (hiragana_NN(hiragana)) {
-    return Hiragana_Now;
-  }
+  if (HIRAGANA.textContent === '' && NOW_HIRAGANA.textContent === '') return;
+  if (hiragana_NN(hiragana)) return Hiragana_Now;
   aimaiProcess(hiragana);
   Romaji = ROMAJI.textContent;
 

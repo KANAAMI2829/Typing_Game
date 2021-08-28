@@ -196,6 +196,7 @@ function startOver() {
   SCORE.textContent = '0';
   RANK.textContent = '';
   JAPANESE.textContent = 'スペースキーを押してスタート';
+  SETTING_STATE.animate({opacity: 1}, {duration: 0, fill: 'forwards'});
   CorrectCount = 0;
   if (ENmode === true) document.getElementById('Correct').textContent = '0';
 }

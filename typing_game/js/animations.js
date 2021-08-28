@@ -58,7 +58,8 @@ function returnAnimation() {
 function countDownAnimation(count_num) {
   COUNT_DOWN_NUMBER.textContent = count_num--;
   COUNT_DOWN.style.opacity = '1';
-  SETTING_STATE.style = 'display: none; opacity: 0;';
+  SETTING_STATE.style = 'display: none';
+  SETTING_STATE.animate({opacity: 0}, {duration: 0, fill: 'forwards'})
   let StopId = setInterval(() => {
     if (count_num === 0) {
     isPlaying = true;
@@ -340,7 +341,7 @@ function restartAnimation() {
     const CORRECT = document.getElementById('Correct');
     Finish.id = 'Count_Down';
     HIRAGANA_SPACE.removeAttribute('hidden');
-    SETTING_STATE.style = 'opacity: 0';
+    SETTING_STATE.style = '';
     TYPED_HIRAGANA.style.color = '#479400';
     TYPED_HIRAGANA.style.fontSize = '26px';
     ROMAJI.style.color = '#a7b1be';
@@ -576,6 +577,12 @@ function restartNoneAnimation() {
         fill: 'forwards'
       })
       JAPANESE.animate({
+        opacity: [0, 1]
+      },{
+        duration: 0,
+        fill: 'forwards'
+      })
+      SETTING_STATE.animate({
         opacity: [0, 1]
       },{
         duration: 0,
