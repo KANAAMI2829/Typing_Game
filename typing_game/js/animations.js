@@ -99,15 +99,15 @@ function finishAnimation() {
   } else {
     let x;
     const TIME = Number(TIME_LIMIT_VALUE.value);
-    if (TIME === 600) x = 1;
-    else if (TIME === 240) x = 2.5;
-    else if (TIME === 120) x = 5;
-    else if (TIME === 90) x = 7;
-    else if (TIME === 60) x = 10;
-    else if (TIME === 30) x = 20;
-    else x = 30;
+    if (TIME === 600) x = 2;
+    else if (TIME === 240) x = 5;
+    else if (TIME === 120) x = 10;
+    else if (TIME === 90) x = 14;
+    else if (TIME === 60) x = 20;
+    else if (TIME === 30) x = 40;
+    else x = 60;
     ACCURACY_RATE = (CorrectCount + MissCount) === 0 ? 0 : (CorrectCount / (CorrectCount + MissCount)) * 100.0;
-    SCORE_VALUE = ((CorrectCount * x) * ((ACCURACY_RATE.toFixed(2) / 100) ** 2)).toFixed(0);
+    SCORE_VALUE = ((CorrectCount * x) * (ACCURACY_RATE.toFixed(2) / 100)).toFixed(0);
   }
 
   // 直列処理を行うためにPromiseオブジェクトを使用
@@ -117,6 +117,7 @@ function finishAnimation() {
     NOW_HIRAGANA.textContent = '';
     TYPED_HIRAGANA.textContent = '';
     ROMAJI.textContent = '';
+    HINT_ROMAJI.textContent = '';
     TYPED_ROMAJI.textContent = '';
     COUNT_DOWN_NUMBER.textContent = 'Finish!';
     COUNT_DOWN.id = 'Finish';
@@ -486,6 +487,7 @@ function restartNoneAnimation() {
     TYPED_HIRAGANA.style.fontSize = '26px';
     ROMAJI.style.color = '#a7b1be';
     COUNT_DOWN_NUMBER.textContent = '';
+    HINT_ROMAJI.textContent = '';
     GOOD.textContent = '0';
     MISS.textContent = '0';
     WPM.textContent = '0';

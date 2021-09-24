@@ -1,0 +1,135 @@
+@font-face {
+  font-family: "Rounded-M+";
+  src: 
+  url("../../font/rounded-mplus-1m-regular.woff2") format("woff2"),
+  url("../../font/rounded-mplus-1m-regular.woff") format("woff"),
+  url("../../font/rounded-mplus-1m-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Syntesia";
+  src:
+  url("../../font/Syntesia.woff2") format("woff2"),
+  url("../../font/Syntesia.woff") format("woff"),
+  url("../../font/Syntesia.ttf") format("truetype");
+}
+
+html {
+  background-color: whitesmoke;
+}
+
+body {
+  color: #333;
+  margin: 0;
+  font-family: "Rounded-M+", Verdana, sans-serif;
+}
+
+header {
+  background-color: #c0d9f0;
+  height: 63px;
+}
+
+#Info_Left {
+  display: flex;
+  margin-left: 25px;
+}
+
+#Info_Left a {
+  height: 63px;
+  text-align: center;
+}
+
+.homeButton {
+  padding: 3px 20px 0px 20px;
+  transition: 0.3s;
+}
+
+.homeButton:hover {
+  transform: scale(1.06);
+  backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
+.homeButton img {
+  filter: invert(24%) sepia(0%) saturate(1966%) hue-rotate(119deg) brightness(108%) contrast(82%);
+}
+
+#header_hr {
+  margin: 0;
+  height: 8px;
+  background-color: #486d94;
+  border: none;
+}
+
+/* 以下フォームのスタイル */
+
+main {
+  width: 500px;
+  margin: 0 auto;
+  border: solid #999 2px;
+  border-top: none;
+  border-bottom: none;
+}
+
+main > h1 {
+  margin: 30px 0 30px 0;
+  text-align: center;
+}
+
+main > h2, main > p, dl {
+  padding-left: 25px;
+}
+
+#lead {
+  margin-bottom: 5px;
+}
+
+#lead_create_account {
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+dl {
+  margin-bottom: 25px;
+}
+
+dt {
+  margin-top: 10px;
+}
+
+.notes {
+  font-size: 13px;
+}
+
+.required {
+  color: #ff3333;
+}
+
+.error {
+  font-size: 13px;
+  color: #ff3333;
+}
+
+dd {
+  margin: 0;
+}
+
+#save {
+  margin: 0 4px 0 0;
+}
+
+label {
+  font-size: 13px;
+}
+
+#form_hr {
+  width: 470px;
+  border-width: 0 0 5px;
+  border-style: solid;
+  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 1"><circle fill="hsla(0, 0%, 65%, 1.0)" cx="1" cy="0.5" r="0.5"/></svg>') 0 0 100% repeat;
+}
+
+#login_button {
+  padding: 20px 0 20px 0;
+  text-align: center;
+}

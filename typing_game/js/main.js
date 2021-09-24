@@ -32,6 +32,7 @@ const NOW_HIRAGANA      = document.getElementById('Now_Hiragana');
 const TYPED_HIRAGANA    = document.getElementById('Typed_Hiragana');
 const ROMAJI            = document.getElementById('Romaji');
 const TYPED_ROMAJI      = document.getElementById('Typed_Romaji');
+const HINT_ROMAJI       = document.getElementById('Hint_Romaji');
 const MISS_ALERT        = document.getElementById('Miss_Alert');
 const COUNT_SPACE       = document.getElementById('Count_Space');
 const RANK_SPACE        = document.getElementById('Rank_Space');
@@ -66,6 +67,7 @@ let Now_Hiragana;
 let Hiragana_Index;
 let Typed_Hiragana;
 let Romaji;
+let HintRomaji;
 let Romaji_Index;
 let Typed_Romaji;
 let Random_Reibun;
@@ -121,23 +123,45 @@ document.addEventListener('keydown', e => {
   TypedKey = TypedKey + TypeKey;
   Typed_Romaji = TYPED_ROMAJI.textContent;
   Romaji = ROMAJI.textContent;
+  HintRomaji = HINT_ROMAJI.textContent;
   GoodCount = GOOD.textContent;
   MissCount = MISS.textContent;
   Now_Hiragana = aimai();
 
   // 正誤判定処理
-  if (TypeKey === Romaji[0]) {
-    Romaji_Index++;
-    GoodCount++;
-    GOOD.textContent = GoodCount;
-    changeTypedRomajiColor(ROMAJI.textContent);
-    replaceReibun(Romaji_Index, Typed_Romaji.length + Romaji.length);
+  if (ENmode === true) {
+    if (TypeKey === HintRomaji) {
+      Romaji_Index++;
+      GoodCount++;
+      GOOD.textContent = GoodCount;
+      HINT_ROMAJI.textContent = '';
+      changeTypedHintRomajiColor(HintRomaji);
+    } else if (HintRomaji === '' && TypeKey === Romaji[0]) {
+      Romaji_Index++;
+      GoodCount++;
+      GOOD.textContent = GoodCount;
+      changeTypedRomajiColor(Romaji);
+      replaceReibun(Romaji_Index, Typed_Romaji.length + Romaji.length);
+    } else {
+      if (ROMAJI.style.color === 'whitesmoke') MissCount++;
+      MISS.textContent = MissCount;
+      ROMAJI.style.color = '#a7b1be';
+      TypedKey = TypedKey.slice(0, -1);
+      missAnimation();
+    }
   } else {
-    if (ENmode !== true) MissCount++;
-    else if (ROMAJI.style.color === 'whitesmoke') MissCount++;
-    MISS.textContent = MissCount;
-    ROMAJI.style.color = '#a7b1be';
-    TypedKey = TypedKey.slice(0, -1);
-    missAnimation();
+    if (TypeKey === Romaji[0]) {
+      Romaji_Index++;
+      GoodCount++;
+      GOOD.textContent = GoodCount;
+      changeTypedRomajiColor(Romaji);
+      replaceReibun(Romaji_Index, Typed_Romaji.length + Romaji.length);
+    } else {
+      MissCount++;;
+      MISS.textContent = MissCount;
+      ROMAJI.style.color = '#a7b1be';
+      TypedKey = TypedKey.slice(0, -1);
+      missAnimation();
+    }
   }
 });

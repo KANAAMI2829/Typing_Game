@@ -135,6 +135,11 @@ function changeTypedRomajiColor(romaji) {
   ROMAJI.textContent = romaji.slice(1);
 }
 
+function changeTypedHintRomajiColor(romaji) {
+  Typed_Romaji = TYPED_ROMAJI.textContent;
+  TYPED_ROMAJI.textContent = Typed_Romaji + romaji;
+}
+
 function filterInputKey(type_key) {
   if (type_key.length >= 2) {
     return true;
@@ -189,6 +194,7 @@ function startOver() {
   TYPED_HIRAGANA.style.fontSize = '26px';
   ROMAJI.style.color = '#a7b1be';
   COUNT_DOWN_NUMBER.textContent = '';
+  HINT_ROMAJI.textContent = '';
   GOOD.textContent = '0';
   MISS.textContent = '0';
   WPM.textContent = '0';

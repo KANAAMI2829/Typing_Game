@@ -2,8 +2,9 @@
 
 function setReibunEN() {
   JAPANESE.textContent = Random_Reibun[Now_Reibun_Number][1];
-  ROMAJI.textContent = Random_Reibun[Now_Reibun_Number][0];
+  ROMAJI.textContent = Random_Reibun[Now_Reibun_Number][0].slice(1);
   TYPED_ROMAJI.textContent = '';
+  HINT_ROMAJI.textContent = `${Random_Reibun[Now_Reibun_Number][0][0]}`;
   ROMAJI.style.color = 'whitesmoke';
   TYPED_HIRAGANA.style.fontSize = '20px';
   TYPED_HIRAGANA.style.color = '#666';
@@ -14,7 +15,7 @@ function setReibunEN() {
 function gamePreparationEN(type_key) {
   if (type_key.match(/\s/g) !== null) {
     if (isPlaying === true || isReady === false) return false;
-    if (GRADE.value === 'jhs1') Random_Reibun = shuffleReibun(EN_REIBUN_TABLE_JHS_1);
+    if      (GRADE.value === 'jhs1') Random_Reibun = shuffleReibun(EN_REIBUN_TABLE_JHS_1);
     else if (GRADE.value === 'jhs2') Random_Reibun = shuffleReibun(EN_REIBUN_TABLE_JHS_2);
     else if (GRADE.value === 'jhs3') Random_Reibun = shuffleReibun(EN_REIBUN_TABLE_JHS_3);
     else if (GRADE.value === 'hs1')  Random_Reibun = shuffleReibun(EN_REIBUN_TABLE_HS_1);
