@@ -114,14 +114,6 @@ dd {
   margin: 0;
 }
 
-#save {
-  margin: 0 4px 0 0;
-}
-
-label {
-  font-size: 13px;
-}
-
 #form_hr {
   width: 470px;
   border-width: 0 0 5px;

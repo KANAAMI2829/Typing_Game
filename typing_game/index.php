@@ -2,15 +2,43 @@
   require('../config/dbconnect.php');
   session_start();
 
+  function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+  }
+
+  function loadSettings($acct) {
+    $lastSettingsData = [
+      'mode'       => $acct['mode'],
+      'detail'     => $acct['detail'],
+      'time_limit' => $acct['time_limit'],
+      'ranking'    => $acct['ranking']
+    ];
+    
+    $json = json_encode($lastSettingsData);
+    echo "<script language='javascript'>";
+    echo "const LAST_SETTINGS_DATA = JSON.parse(JSON.stringify($json));";
+    echo "</script>";
+  }
+
   $isLogin = false;
+  echo "<script language='javascript'>";
+  echo "let isLogin = false;";
+  echo "</script>";
 
   if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
     $_SESSION['time'] = time();
     $isLogin = true;
+    echo "<script language='javascript'>";
+    echo "isLogin = true;";
+    echo "</script>";
 
     $accounts = $db->prepare('SELECT * FROM accounts WHERE id = ?');
     $accounts->execute(array($_SESSION['id']));
     $account = $accounts->fetch(PDO::FETCH_ASSOC);
+
+    loadSettings($account);
   }
 ?>
 <!DOCTYPE html>
@@ -34,7 +62,7 @@
       </div>
       <div id="Info_Right">
         <?php if ($isLogin): ?>
-        <a class="logoutButton" id="logout_Button">
+        <a class="logoutButton" id="Logout_Button" href="http://localhost:8888/typing_game/logout/">
           <img src="img/logout.svg" height="61.5px" alt="ログアウトボタン">
         </a>
         <a class="accountButton" id="Account_Button">
@@ -59,50 +87,72 @@
         <div class="settingElements">
           <div class="select">
             <h2>ゲームモード</h2>
-            <select name="GameMode" id="Game_Mode">
-              <option value="ja">日本語</option>
-              <option value="en">英単語学習</option>
-              <option value="pg">プログラミング</option>
-            </select>
+            <form>
+              <select name="GameMode" id="Game_Mode">
+                <option value="ja">日本語</option>
+                <option value="en">英単語学習</option>
+                <option value="pg">プログラミング</option>
+              </select>
+            </form>
           </div>
           <div id="en_dtl" hidden>
             <div class="detailsSetting">
               <h2>学習範囲</h2>
-              <select name="Grade" id="Grade">
-                <option value="jhs1">中一</option>
-                <option value="jhs2">中二</option>
-                <option value="jhs3">中三</option>
-                <option value="hs1">高一</option>
-                <option value="hs2">高二</option>
-                <option value="hs3">高三</option>
-              </select>
+              <form>
+                <select name="Grade" id="Grade">
+                  <option value="jhs1">中一</option>
+                  <option value="jhs2">中二</option>
+                  <option value="jhs3">中三</option>
+                  <option value="hs1">高一</option>
+                  <option value="hs2">高二</option>
+                  <option value="hs3">高三</option>
+                </select>
+              </form>
             </div>
           </div>
           <div id="pg_dtl" hidden>
             <div class="detailsSetting">
               <h2>分野・言語</h2>
-              <select name="Lang" id="Lang">
-                <option value="js">JavaScript</option>
-                <option value="c">C</option>
-              </select>
+              <form>
+                <select name="Lang" id="Lang">
+                  <option value="js">JavaScript</option>
+                  <option value="c">C</option>
+                </select>
+              </form>
             </div>
           </div><hr id="Settings_hr">
           <div class="select">
             <h2>制限時間</h2>
-            <select name="TimeLimit" id="Time_Limit_Value">
-              <option value="20">20秒</option>
-              <option value="30">30秒</option>
-              <option value="60" selected>60秒</option>
-              <option value="90">90秒</option>
-              <option value="120">120秒</option>
-              <option value="240">240秒</option>
-              <option value="600">600秒</option>
-            </select>
+            <form>
+              <select name="TimeLimit" id="Time_Limit_Value">
+                <option value="20">20秒</option>
+                <option value="30">30秒</option>
+                <option value="60" selected>60秒</option>
+                <option value="90">90秒</option>
+                <option value="120">120秒</option>
+                <option value="240">240秒</option>
+                <option value="600">600秒</option>
+              </select>
+            </form>
+          </div><hr id="Settings_hr">
+          <div class="checkbox">
+            <h2>ランキング</h2>
+            <form>
+              <input id="Ranking" type="checkbox" name="Ranking" value="on" checked><label
+              for="Ranking">スコアをランキングに登録する</label>
+			      </form>
           </div>
         </div>
         <a class="checkMarkButton" id="CheckMark_Button">
           <img src="img/CheckMark.svg" width="120px" alt="戻るボタン">
         </a>
+      </div>
+    </section>
+    <section id="AccountInfo_Screen" hidden>
+      <div id="AccountInfo_Contents">
+      <h1>アカウント情報</h1>
+        <div class="settingElements">
+          <div class="select">
       </div>
     </section>
     <section id="Help_Popup" hidden>
@@ -330,6 +380,7 @@
     <script src="js/romajiTable.js"></script>
     <script src="js/main.js"></script>
     <script src="js/settingFunctions.js"></script>
+    <script src="js/accountFunctions.js"></script>
     <script src="js/helpPopupFunctions.js"></script>
     <script src="js/gameFunctions.js"></script>
     <script src="js/ENmodeFunctions.js"></script>

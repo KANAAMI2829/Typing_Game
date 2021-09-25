@@ -27,6 +27,10 @@ function settingsAnimation() {
   })
 }
 
+function accountInfoAnimation() {
+  ;
+}
+
 function returnAnimation() {
   let promise = new Promise((resolve, reject) => {
     SETTINGS_SCREEN.animate({

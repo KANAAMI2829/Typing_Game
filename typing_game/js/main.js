@@ -4,6 +4,7 @@ const HOME_BUTTON       = document.getElementById('Home_Button');
 const SETTINGS_BUTTON   = document.getElementById('Settings_Button');
 const SETTINGS_SCREEN   = document.getElementById('Settings_Screen');
 const CHECKMARK_BUTTON  = document.getElementById('CheckMark_Button');
+const ACCOUNT_BUTTON    = document.getElementById('Account_Button');
 const HELP_BUTTON       = document.getElementById('Help_Button');
 const HELP_POPUP        = document.getElementById('Help_Popup');
 const GAME_MODE         = document.getElementById('Game_Mode');
@@ -12,6 +13,7 @@ const GRADE             = document.getElementById('Grade');
 const PG_DTL            = document.getElementById('pg_dtl');
 const LANG              = document.getElementById('Lang');
 const TIME_LIMIT_VALUE  = document.getElementById('Time_Limit_Value');
+const RANKING           = document.getElementById('Ranking');
 const RETURN_ARROW      = document.getElementById('Return_Arrow');
 const CLOSE_BUTTON      = document.getElementById('Close_Button');
 const MENU              = document.getElementById('Menu');
@@ -53,6 +55,7 @@ let GOOD = document.getElementById('Good');
 let ACCURACY = document.getElementById('Accuracy');
 let TimeLimit = 60 * 1000;
 let isSetting = false;
+let isAccountInfo = false;
 let isHelping = false;
 let isPlaying = false;
 let isRestartReady = false;
@@ -84,6 +87,8 @@ SETTINGS_BUTTON.addEventListener('click', () => goSettings());
 HELP_BUTTON.addEventListener('click', () => goHelp());
 
 CHECKMARK_BUTTON.addEventListener('click', () => returnHome());
+
+if (isLogin === true) ACCOUNT_BUTTON.addEventListener('click', () => goAccountInfo());
 
 // ゲーム中の処理
 document.addEventListener('keydown', e => {

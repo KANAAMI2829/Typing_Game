@@ -2,7 +2,7 @@
   require('../../config/dbconnect.php');
 
   if (!empty($_POST)) {
-    $account = $db->prepare('SELECT COUNT(*) AS cnt FROM accounts WHERE name=?');
+    $account = $db->prepare('SELECT COUNT(*) AS cnt FROM accounts WHERE name = ?');
     $account->execute(array($_POST['name']));
     $record = $account->fetch();
 
@@ -11,7 +11,7 @@
     }
 
     if (empty($error['name'])) {
-      $statement = $db->prepare('INSERT INTO accounts SET name=?, password=?, created=NOW()');
+      $statement = $db->prepare('INSERT INTO accounts SET name = ?, password = ?, created = NOW()');
       echo $ret = $statement->execute(array(
         $_POST['name'], 
         password_hash($_POST['password'], PASSWORD_DEFAULT)

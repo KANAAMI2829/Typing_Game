@@ -187,6 +187,20 @@ select {
   cursor: pointer;
 }
 
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox h2 {
+  width: 186px;
+}
+
+.checkbox form {
+  margin: 8px 0 8px 0;
+}
+
 #Settings_hr {
   width: 445px;
   border-width: 0 0 5px;
