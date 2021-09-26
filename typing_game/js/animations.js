@@ -103,6 +103,7 @@ function finishAnimation() {
   } else {
     let x;
     const TIME = Number(TIME_LIMIT_VALUE.value);
+    ACCURACY = document.getElementById('Rate');
     if (TIME === 600) x = 2;
     else if (TIME === 240) x = 5;
     else if (TIME === 120) x = 10;
@@ -128,10 +129,25 @@ function finishAnimation() {
     COUNT_DOWN.style.opacity = '1';
     Finish = document.getElementById('Finish');
     WPM.textContent = WPM_VALUE.toFixed(0);
-    ACCURACY.textContent = ACCURACY_RATE.toFixed(2);
     SCORE.textContent = SCORE_VALUE;
     RANK.textContent = judgeRank(SCORE.textContent);
+    if (ACCURACY_RATE === 0.00) ACCURACY.textContent = 0;
+    else ACCURACY.textContent = ACCURACY_RATE.toFixed(2);
 
+    if (isLogin && !ENmode && !PGmode) {
+      let result_data = new FormData;
+      result_data.append('score', `${SCORE_VALUE}`);
+      result_data.append('rank', `${RANK.textContent}`);
+      fetch('http://localhost:8888/typing_game/updateHighScore.php', {
+        method: 'POST',
+        body: result_data,
+      })
+      .then(result => {
+        console.log('Success:', result);
+      })
+      .catch(() => alert('設定情報の保存に失敗しました'));
+    }
+    
     setTimeout(() => {
       Finish.animate({
         opacity: [1, 0],
@@ -336,7 +352,7 @@ function finishAnimation() {
       }, 400)
     })
   }).catch(() => {
-    alert('エラーが発生しました。ページを再読み込みしてください。');
+    alert('エラーが発生しました。\nページを再読み込みしてください。');
   })
 }
 
@@ -477,7 +493,7 @@ function restartAnimation() {
       }, 200)
     })
   }).catch(() => {
-    alert('エラーが発生しました。ページを再読み込みしてください。');
+    alert('エラーが発生しました。\nページを再読み込みしてください。');
   })
 }
 

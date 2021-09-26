@@ -2,15 +2,8 @@
   require('../config/dbconnect.php');
   session_start();
 
-  if (empty($_SESSION) || $_SESSION['time'] + 3600 < time()) {
-    echo json_encode('invalid_login');
-    exit();
-  }
-
-  if (empty($_POST)) {
-    echo json_encode('post_empty');
-    exit();
-  }
+  if (empty($_SESSION) || $_SESSION['time'] + 3600 < time()) exit();
+  if (empty($_POST)) exit();
 
   $sql = 'UPDATE accounts SET mode = ?, detail = ?, time_limit = ?, ranking = ? WHERE id = ?';
   $stmt = $db->prepare($sql);

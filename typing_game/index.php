@@ -59,22 +59,27 @@
         <a class="settings" id="Settings_Button">
           <img src="img/Settings.svg" width="60px" height="53.8px" alt="設定ボタン">
         </a>
+        <?php if ($isLogin): ?>
+          <a class="rankingButton" id="Ranking_Button">
+          <img src="img/Ranking.svg" height="63px" alt="ランキングボタン">
+        </a>
+        <?php endif; ?>
       </div>
       <div id="Info_Right">
         <?php if ($isLogin): ?>
-        <a class="logoutButton" id="Logout_Button" href="http://localhost:8888/typing_game/logout/">
-          <img src="img/logout.svg" height="61.5px" alt="ログアウトボタン">
-        </a>
-        <a class="accountButton" id="Account_Button">
-          <img src="img/Account.svg" height="62px" alt="アカウントボタン">
-        </a>
+          <a class="logoutButton" id="Logout_Button" href="http://localhost:8888/typing_game/logout/">
+            <img src="img/logout.svg" height="61.5px" alt="ログアウトボタン">
+          </a>
+          <a class="accountButton" id="Account_Button">
+            <img src="img/Account.svg" height="62px" alt="アカウントボタン">
+          </a>
         <?php else: ?>
-        <a class="loginButton" id="Login_Button" href="http://localhost:8888/typing_game/login/">
-          <img src="img/login.svg" height="62px" alt="ログインボタン">
-        </a>
-        <a class="signUpButton" id="SignUp_Button" href="http://localhost:8888/typing_game/join/">
-          <img src="img/Sign_Up_Button.svg" width="63px" alt="サインアップボタン">
-        </a>
+          <a class="loginButton" id="Login_Button" href="http://localhost:8888/typing_game/login/">
+            <img src="img/login.svg" height="62px" alt="ログインボタン">
+          </a>
+          <a class="signUpButton" id="SignUp_Button" href="http://localhost:8888/typing_game/join/">
+            <img src="img/Sign_Up_Button.svg" width="63px" alt="サインアップボタン">
+          </a>
         <?php endif; ?>
         <a class="helpButton" id="Help_Button">
           <img src="img/Help_Button.svg" width="46px" alt="HELPボタン">
@@ -390,4 +395,6 @@
     <script src="js/animations.js"></script>
     <script src="js/helpSlideAnimations.js"></script>
   </body>
+  <!-- <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a> -->
+  <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/good-ware" title="Good Ware">Good Ware</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
 </html>

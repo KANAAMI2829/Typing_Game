@@ -64,7 +64,7 @@ header > div > a > img {
 }
 
 .homeButton {
-  padding: 3px 20px 0px 20px;
+  padding: 3px 19.8px 0px 19.8px;
   transition: 0.3s;
 }
 
@@ -80,6 +80,18 @@ header > div > a > img {
 }
 
 .settings:hover {
+  transform: scale(1.06);
+  backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
+.rankingButton {
+  padding: 0 4px 0px 10.6px;
+  transform: scale(0.999);
+  transition: 0.3s;
+}
+
+.rankingButton:hover  {
   transform: scale(1.06);
   backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;

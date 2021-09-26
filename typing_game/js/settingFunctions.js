@@ -3,10 +3,7 @@
 GAME_MODE.addEventListener('change', () => selectChange());
 
 window.addEventListener('DOMContentLoaded', function() {
-  if (isLogin === true) {
-    alert('ログイン中です');
-    setLastSettings(LAST_SETTINGS_DATA);
-  }
+  if (isLogin === true) setLastSettings(LAST_SETTINGS_DATA);
 })
 
 function goSettings() {
@@ -23,23 +20,16 @@ function setLastSettings(settingData) {
   const TIME_LIMIT    = settingData['time_limit'];
   const RANKING_STATE = settingData['ranking'];
 
-  switch (MODE) {
-    case 'ja': break;
-    case 'en':
-      GOOD_COUNTER.innerHTML = '正答数: <span id="Correct">0</span>';
-      ACCURACY_RESULT.innerHTML = '正答率: <span id="Rate">0</span>%';
-      STATE_MODE.textContent = '英単語学習';
-      GAME_MODE.options[1].selected = true;
-      ENmode = true;
-      break;
-    case 'pg':
-      STATE_MODE.textContent = 'プログラミング';
-      GAME_MODE.options[2].selected = true;
-      PGmode = true;
-      break;
-    default:
-      alert('エラーが発生しました。\nページを再読み込みしてください。');
-      break;
+  if (MODE === 'en') {
+    GOOD_COUNTER.innerHTML = '正答数: <span id="Correct">0</span>';
+    ACCURACY_RESULT.innerHTML = '正答率: <span id="Rate">0</span>%';
+    STATE_MODE.textContent = '英単語学習';
+    GAME_MODE.options[1].selected = true;
+    ENmode = true;
+  } else if (MODE === 'pg') {
+    STATE_MODE.textContent = 'プログラミング';
+    GAME_MODE.options[2].selected = true;
+    PGmode = true;
   }
 
   switch (DETAIL) {
@@ -104,15 +94,7 @@ function setLastSettings(settingData) {
       break;
   }
 
-  switch (RANKING_STATE) {
-    case 'on': break;
-    case 'off':
-      RANKING.checked = false;
-      break;
-    default:
-      alert('エラーが発生しました。\nページを再読み込みしてください。');
-      break;
-  }
+  if (RANKING_STATE === 'off') RANKING.checked = false;
 
   STATE_TIMELIMIT.textContent = String(TIME_LIMIT);
   TimeLimit = Number(TIME_LIMIT) * 1000;
@@ -175,10 +157,10 @@ function returnHome() {
   TimeLimit = Number(TIME_LIMIT_VALUE.value) * 1000;
 
   if (isLogin) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8888/typing_game/saveSettings.php');
-    xhr.send(setting_data);
-    xhr.addEventListener('error', () => {alert('設定情報の保存に失敗しました')});
+    fetch('http://localhost:8888/typing_game/saveSettings.php', {
+      method: 'POST',
+      body: setting_data,
+    }).catch(() => alert('設定情報の保存に失敗しました'));
   }
 
   isSetting = false;
