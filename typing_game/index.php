@@ -1,12 +1,6 @@
 <?php
-  require('../config/dbconnect.php');
+  require('../dbconnect.php');
   session_start();
-
-  function console_log( $data ){
-    echo '<script>';
-    echo 'console.log('. json_encode( $data ) .')';
-    echo '</script>';
-  }
 
   function loadSettings($acct) {
     $lastSettingsData = [
@@ -39,6 +33,36 @@
     $account = $accounts->fetch(PDO::FETCH_ASSOC);
 
     loadSettings($account);
+
+    $sth = $db->prepare('SELECT name, score, rank FROM accounts WHERE ranking = "on" AND score != 0');
+    $sth->execute();
+    $all_result = $sth->fetchAll(PDO::FETCH_ASSOC);
+    $ranking_data = array(
+      "0" => 0, "1" => 0, "2" => 0, "3" => 0, "4" => 0, 
+      "5" => 0, "6" => 0, "7" => 0, "8" => 0, "9" => 0
+    );
+    if (count($all_result) > 9) {
+      for ($i = 0; $i < 10; $i++) {
+          $ranking_data["$i"] = (int)$all_result["$i"]['score'];
+      }
+    } else {
+      for ($i = 0; $i < count($all_result); $i++) {
+          $ranking_data["$i"] = (int)$all_result["$i"]['score'];
+      }
+    }
+
+    arsort($ranking_data);
+    $keys = array_keys($ranking_data);
+    if (count($all_result) > 0) $first   = $all_result[(int)$keys[0]];
+    if (count($all_result) > 1) $second  = $all_result[(int)$keys[1]];
+    if (count($all_result) > 2) $third   = $all_result[(int)$keys[2]];
+    if (count($all_result) > 3) $fourth  = $all_result[(int)$keys[3]];
+    if (count($all_result) > 4) $fifth   = $all_result[(int)$keys[4]];
+    if (count($all_result) > 5) $sixth   = $all_result[(int)$keys[5]];
+    if (count($all_result) > 6) $seventh = $all_result[(int)$keys[6]];
+    if (count($all_result) > 7) $eighth  = $all_result[(int)$keys[7]];
+    if (count($all_result) > 8) $ninth   = $all_result[(int)$keys[8]];
+    if (count($all_result) > 9) $tenth   = $all_result[(int)$keys[9]];
   }
 ?>
 <!DOCTYPE html>
@@ -67,17 +91,17 @@
       </div>
       <div id="Info_Right">
         <?php if ($isLogin): ?>
-          <a class="logoutButton" id="Logout_Button" href="http://localhost:8888/typing_game/logout/">
-            <img src="img/logout.svg" height="61.5px" alt="ログアウトボタン">
+          <a class="logoutButton" id="Logout_Button" href="https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/logout/">
+            <img src="img/Logout.svg" height="61.5px" alt="ログアウトボタン">
           </a>
           <a class="accountButton" id="Account_Button">
             <img src="img/Account.svg" height="62px" alt="アカウントボタン">
           </a>
         <?php else: ?>
-          <a class="loginButton" id="Login_Button" href="http://localhost:8888/typing_game/login/">
+          <a class="loginButton" id="Login_Button" href="https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/login/">
             <img src="img/login.svg" height="62px" alt="ログインボタン">
           </a>
-          <a class="signUpButton" id="SignUp_Button" href="http://localhost:8888/typing_game/join/">
+          <a class="signUpButton" id="SignUp_Button" href="https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/join/">
             <img src="img/Sign_Up_Button.svg" width="63px" alt="サインアップボタン">
           </a>
         <?php endif; ?>
@@ -139,7 +163,7 @@
                 <option value="600">600秒</option>
               </select>
             </form>
-          </div><hr id="Settings_hr">
+          </div><?php if ($isLogin): ?><hr id="Settings_hr">
           <div class="checkbox">
             <h2>ランキング</h2>
             <form>
@@ -147,19 +171,109 @@
               for="Ranking">スコアをランキングに登録する</label>
 			      </form>
           </div>
+          <?php endif; ?>
         </div>
         <a class="checkMarkButton" id="CheckMark_Button">
-          <img src="img/CheckMark.svg" width="120px" alt="戻るボタン">
+          <img src="img/CheckMark.svg" width="120px" alt="完了ボタン">
         </a>
       </div>
     </section>
-    <section id="AccountInfo_Screen" hidden>
-      <div id="AccountInfo_Contents">
-      <h1>アカウント情報</h1>
-        <div class="settingElements">
-          <div class="select">
+    <section id="Ranking_Screen" hidden>
+      <h1>スコアランキング　TOP10</h1>
+      <div id="Ranking_Contents">
+        <table border="1" cellpadding="7" cellspacing="0">
+          <tr>
+            <th class="ranking_rank">順位</th>
+            <th class="ranking_name">ニックネーム</th>
+            <th class="ranking_score">スコア</th>
+            <th class="ranking_rank_state">ランク</th>
+          </tr>
+          <tr>
+            <th class="ranking_rank">1位</th>
+            <th class="ranking_name"><?php if (isset($first)) echo $first['name'] ?></th>
+            <th class="ranking_score"><?php if (isset($first)) echo $first['score'] ?></th>
+            <th class="ranking_rank_state"><?php if (isset($first)) echo $first['rank'] ?></th>
+          </tr>
+          <tr>
+            <th class="ranking_rank">2位</th>
+            <th class="ranking_name"><?php if (isset($second)) echo $second['name'] ?></th>
+            <th class="ranking_score"><?php if (isset($second)) echo $second['score'] ?></th>
+            <th class="ranking_rank_state"><?php if (isset($second)) echo $second['rank'] ?></th>
+          </tr>
+          <tr>
+            <th class="ranking_rank">3位</th>
+            <th class="ranking_name"><?php if (isset($third)) echo $third['name'] ?></th>
+            <th class="ranking_score"><?php if (isset($third)) echo $third['score'] ?></th>
+            <th class="ranking_rank_state"><?php if (isset($third)) echo $third['rank'] ?></th>
+          </tr>
+          <tr>
+            <th class="ranking_rank">4位</th>
+            <th class="ranking_name"><?php if (isset($fourth)) echo $fourth['name'] ?></th>
+            <th class="ranking_score"><?php if (isset($fourth)) echo $fourth['score'] ?></th>
+            <th class="ranking_rank_state"><?php if (isset($fourth)) echo $fourth['rank'] ?></th>
+          </tr>
+          <tr>
+            <th class="ranking_rank">5位</th>
+            <th class="ranking_name"><?php if (isset($fifth)) echo $fifth['name'] ?></th>
+            <th class="ranking_score"><?php if (isset($fifth)) echo $fifth['score'] ?></th>
+            <th class="ranking_rank_state"><?php if (isset($fifth)) echo $fifth['rank'] ?></th>
+          </tr>
+          <tr>
+            <th class="ranking_rank">6位</th>
+            <th class="ranking_name"><?php if (isset($sixth)) echo $sixth['name'] ?></th>
+            <th class="ranking_score"><?php if (isset($sixth)) echo $sixth['score'] ?></th>
+            <th class="ranking_rank_state"><?php if (isset($sixth)) echo $sixth['rank'] ?></th>
+          </tr>
+          <tr>
+            <th class="ranking_rank">7位</th>
+            <th class="ranking_name"><?php if (isset($seventh)) echo $seventh['name'] ?></th>
+            <th class="ranking_score"><?php if (isset($seventh)) echo $seventh['score'] ?></th>
+            <th class="ranking_rank_state"><?php if (isset($seventh)) echo $seventh['rank'] ?></th>
+          </tr>
+          <tr>
+            <th class="ranking_rank">8位</th>
+            <th class="ranking_name"><?php if (isset($eighth)) echo $eighth['name'] ?></th>
+            <th class="ranking_score"><?php if (isset($eighth)) echo $eighth['score'] ?></th>
+            <th class="ranking_rank_state"><?php if (isset($eighth)) echo $eighth['rank'] ?></th>
+          </tr>
+          <tr>
+            <th class="ranking_rank">9位</th>
+            <th class="ranking_name"><?php if (isset($ninth)) echo $ninth['name'] ?></th>
+            <th class="ranking_score"><?php if (isset($ninth)) echo $ninth['score'] ?></th>
+            <th class="ranking_rank_state"><?php if (isset($ninth)) echo $ninth['rank'] ?></th>
+          </tr>
+          <tr>
+            <th class="ranking_rank">10位</th>
+            <th class="ranking_name"><?php if (isset($tenth)) echo $tenth['name'] ?></th>
+            <th class="ranking_score"><?php if (isset($tenth)) echo $tenth['score'] ?></th>
+            <th class="ranking_rank_state"><?php if (isset($tenth)) echo $tenth['rank'] ?></th>
+          </tr>
+        </table>
       </div>
     </section>
+    <?php if ($isLogin): ?>
+      <section id="AccountInfo_Popup" hidden>
+        <div class="popupinner">
+          <div class="closeButton" id="Account_Close">
+            <img src="img/Cross.svg" alt="閉じるボタン">
+          </div>
+          <div id="AccountInfo_Contents">
+            <div id="Account_Title">アカウント情報</div>
+            <dl>
+              <dt>アカウント名: </dt>
+              <dd><?php echo $account['name'] ?></dd>
+              <dt><?php echo $account['name'] ?>さんの最高スコア: </dt>
+              <dd><?php echo $account['score'] ?></dd>
+              <dt><?php echo $account['name'] ?>さんの最高ランク: </dt>
+              <dd><?php echo $account['rank'] ?></dd>
+              <dt>ランキング登録: </dt>
+              <dd><?php echo $account['ranking'] ?></dd>
+            </dl>
+          </div>
+        </div>
+        <div class="background" id="Account_Background"></div>
+      </section>
+    <?php endif; ?>
     <section id="Help_Popup" hidden>
       <div class="popupInner">
         <div class="closeButton" id="Close_Button">
@@ -385,6 +499,7 @@
     <script src="js/romajiTable.js"></script>
     <script src="js/main.js"></script>
     <script src="js/settingFunctions.js"></script>
+    <script src="js/rankingFunction.js"></script>
     <script src="js/accountFunctions.js"></script>
     <script src="js/helpPopupFunctions.js"></script>
     <script src="js/gameFunctions.js"></script>

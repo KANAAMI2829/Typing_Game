@@ -227,6 +227,7 @@ select {
   margin: auto;
   text-align: left;
 }
+
 .detailsSetting h2 {
   font-size: 1.4em;
   width: 300px;
@@ -249,6 +250,87 @@ select {
   backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 }
+
+/* ランキング画面のスタイル */
+
+#Ranking_Screen {
+  opacity: 0;
+  padding-bottom: 30px;
+}
+
+#Ranking_Screen > h1 {
+  position: relative;
+  text-align: center;
+  font-size: 32px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+#Ranking_Contents {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#Ranking_Contents table {
+  border-color: whitesmoke;
+}
+
+.ranking_rank {
+  width: 40px;
+}
+
+.ranking_name {
+  width: 400px;
+}
+
+.ranking_score, .ranking_rank_state {
+  width: 80px;
+}
+
+/* アカウントポップアップのスタイル */
+
+#AccountInfo_Popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+#AccountInfo_Contents {
+  margin: 0 auto;
+  width: 500px;
+}
+
+#Account_Title {
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 32px;
+}
+
+#AccountInfo_Contents dl:after {
+  content: " ";
+  clear: both;
+  display: block;
+  visibility: hidden;
+  font-size: 0.1em;
+  line-height: 0.1em;
+}
+
+#AccountInfo_Contents dt {
+  float: left;
+  font-size: 24px;
+}
+
+#AccountInfo_Contents dd {
+  height: 45px;
+  margin: 35px auto;
+  border-bottom: 1px solid gray;
+  text-align: right;
+  font-size: 24px;
+}
+
 /* ヘルプポップアップのスタイル */
 
 #Help_Popup {

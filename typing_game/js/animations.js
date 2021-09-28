@@ -27,35 +27,113 @@ function settingsAnimation() {
   })
 }
 
-function accountInfoAnimation() {
-  ;
+function rankingAnimation() {
+  if (isSetting) {
+    isSetting = false;
+    let promise = new Promise((resolve, reject) => {
+      SETTINGS_SCREEN.animate({
+        opacity: [1, 0]
+      }, {
+        duration: 200,
+        easing: 'ease',
+        fill: 'forwards'
+      })
+      setTimeout(() => {
+        SETTINGS_SCREEN.setAttribute('hidden', '');
+        RANKING_SCREEN.removeAttribute('hidden');
+        resolve();
+      }, 250)
+    })
+  
+    promise.then(() => {
+      RANKING_SCREEN.animate({
+        opacity: [0, 1]
+      }, {
+        duration: 300,
+        easing: 'ease',
+        fill: 'forwards'
+      })
+    })
+  } else {
+    let promise = new Promise((resolve, reject) => {
+      TYPING_GAME.animate({
+        opacity: [1, 0]
+      }, {
+        duration: 200,
+        easing: 'ease',
+        fill: 'forwards'
+      })
+      setTimeout(() => {
+        TYPING_GAME.setAttribute('hidden', '');
+        RANKING_SCREEN.removeAttribute('hidden');
+        resolve();
+      }, 250)
+    })
+  
+    promise.then(() => {
+      RANKING_SCREEN.animate({
+        opacity: [0, 1]
+      }, {
+        duration: 300,
+        easing: 'ease',
+        fill: 'forwards'
+      })
+    })
+  }
 }
 
 function returnAnimation() {
-  let promise = new Promise((resolve, reject) => {
-    SETTINGS_SCREEN.animate({
-      opacity: [1, 0]
-    }, {
-      duration: 200,
-      easing: 'ease',
-      fill: 'forwards'
+  if (isSetting) {
+    let promise = new Promise((resolve, reject) => {
+      SETTINGS_SCREEN.animate({
+        opacity: [1, 0]
+      }, {
+        duration: 200,
+        easing: 'ease',
+        fill: 'forwards'
+      })
+      setTimeout(() => {
+        SETTINGS_SCREEN.setAttribute('hidden', '');
+        TYPING_GAME.removeAttribute('hidden');
+        resolve();
+      }, 250)
     })
-    setTimeout(() => {
-      SETTINGS_SCREEN.setAttribute('hidden', '');
-      TYPING_GAME.removeAttribute('hidden');
-      resolve();
-    }, 250)
-  })
-
-  promise.then(() => {
-    TYPING_GAME.animate({
-      opacity: [0, 1]
-    }, {
-      duration: 300,
-      easing: 'ease',
-      fill: 'forwards'
+  
+    promise.then(() => {
+      TYPING_GAME.animate({
+        opacity: [0, 1]
+      }, {
+        duration: 300,
+        easing: 'ease',
+        fill: 'forwards'
+      })
     })
-  })
+  } else if(isRanking) {
+    let promise = new Promise((resolve, reject) => {
+      RANKING_SCREEN.animate({
+        opacity: [1, 0]
+      }, {
+        duration: 200,
+        easing: 'ease',
+        fill: 'forwards'
+      })
+      setTimeout(() => {
+        RANKING_SCREEN.setAttribute('hidden', '');
+        TYPING_GAME.removeAttribute('hidden');
+        resolve();
+      }, 250)
+    })
+  
+    promise.then(() => {
+      TYPING_GAME.animate({
+        opacity: [0, 1]
+      }, {
+        duration: 300,
+        easing: 'ease',
+        fill: 'forwards'
+      })
+    })
+  }
 }
 
 // スタート時に3秒のカウントダウンを出力
@@ -133,19 +211,15 @@ function finishAnimation() {
     RANK.textContent = judgeRank(SCORE.textContent);
     if (ACCURACY_RATE === 0.00) ACCURACY.textContent = 0;
     else ACCURACY.textContent = ACCURACY_RATE.toFixed(2);
-
+    
     if (isLogin && !ENmode && !PGmode) {
       let result_data = new FormData;
       result_data.append('score', `${SCORE_VALUE}`);
       result_data.append('rank', `${RANK.textContent}`);
-      fetch('http://localhost:8888/typing_game/updateHighScore.php', {
+      fetch('https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/updateHighScore.php', {
         method: 'POST',
         body: result_data,
-      })
-      .then(result => {
-        console.log('Success:', result);
-      })
-      .catch(() => alert('設定情報の保存に失敗しました'));
+      }).catch(() => alert('設定情報の保存に失敗しました'));
     }
     
     setTimeout(() => {
@@ -497,7 +571,7 @@ function restartAnimation() {
   })
 }
 
-// リザルト画面から設定画面に行った場合はアニメーションなしで初期位置まで戻す
+// アニメーションなしで初期位置まで戻す
 function restartNoneAnimation() {
   let promise = new Promise((resolve, reject) => {
     Finish.id = 'Count_Down';

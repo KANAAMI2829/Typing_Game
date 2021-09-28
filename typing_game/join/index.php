@@ -1,5 +1,5 @@
 <?php
-  require('../../config/dbconnect.php');
+  require('../../dbconnect.php');
 
   if (!empty($_POST)) {
     $account = $db->prepare('SELECT COUNT(*) AS cnt FROM accounts WHERE name = ?');
@@ -12,13 +12,13 @@
 
     if (empty($error['name'])) {
       $statement = $db->prepare('INSERT INTO accounts SET name = ?, password = ?, created = NOW()');
-      echo $ret = $statement->execute(array(
+      $statement->execute(array(
         $_POST['name'], 
         password_hash($_POST['password'], PASSWORD_DEFAULT)
       ));
       unset($_POST);
 
-      header('Location: thanks.php');
+      header('Location: https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/join/thanks.html');
       exit();
     }
   }
@@ -33,7 +33,7 @@
   <body>
     <header>
       <div id="Info_Left">
-        <a class="homeButton" id="Home_Button" href="https://backdrop-kanaami.ssl-lolipop.jp/programming_class/typing_game/">
+        <a class="homeButton" id="Home_Button" href="https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/">
           <img src="../img/HOME_Button.svg" wixdth="32.35px" height="53.8px" alt="HOMEボタン">
         </a>
       </div>
@@ -41,7 +41,7 @@
     <main>
       <h1>アカウント作成</h1>
       <p id="lead">次のフォームに必要事項をご記入ください</p>
-      <p id="lead_login">既にアカウントをお持ちの場合は<a href="http://localhost:8888/typing_game/login/">こちら</a></p>
+      <p id="lead_login">既にアカウントをお持ちの場合は<a href="https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/login/">こちら</a></p>
       <form action="" method="POST">
         <dl>
           <dt>ニックネーム<span class="notes">(20文字以下)</span><span class="required">*</span></dt>

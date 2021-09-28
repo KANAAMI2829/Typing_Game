@@ -1,5 +1,5 @@
 <?php
-  require('../config/dbconnect.php');
+  require('../dbconnect.php');
   session_start();
 
   if (empty($_SESSION) || $_SESSION['time'] + 3600 < time()) exit();

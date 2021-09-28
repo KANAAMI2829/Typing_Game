@@ -11,6 +11,6 @@
   }
   
   session_destroy();
-  header('Location: http://localhost:8888/typing_game/');
+  header('Location: https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/');
   exit();
 ?>

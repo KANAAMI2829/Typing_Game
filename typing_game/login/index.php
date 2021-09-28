@@ -1,5 +1,5 @@
 <?php
-  require('../../config/dbconnect.php');
+  require('../../dbconnect.php');
   session_start();
 
   if (!empty($_POST)) {
@@ -14,7 +14,7 @@
         $_SESSION['id'] = $account['id'];
         $_SESSION['time'] = time();
 
-        header('Location: http://localhost:8888/typing_game/');
+        header('Location: https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/');
       } else $error['login'] = 'failed';
     } else $error['login'] = 'failed';
   }
@@ -29,7 +29,7 @@
   <body>
     <header>
       <div id="Info_Left">
-        <a class="homeButton" id="Home_Button" href="https://backdrop-kanaami.ssl-lolipop.jp/programming_class/typing_game/">
+        <a class="homeButton" id="Home_Button" href="https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/">
           <img src="../img/HOME_Button.svg" wixdth="32.35px" height="53.8px" alt="HOMEボタン">
         </a>
       </div>
@@ -37,7 +37,7 @@
     <main>
       <h1>ログイン</h1>
       <p id="lead">ニックネームとパスワードを入力してください</p>
-      <p id="lead_create_account">まだアカウントをお持ちでない場合は<a href="http://localhost:8888/typing_game/join/">こちら</a></p>
+      <p id="lead_create_account">まだアカウントをお持ちでない場合は<a href="https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/join/">こちら</a></p>
       <form action="" method="POST">
         <dl>
           <dt>ニックネーム</dt>

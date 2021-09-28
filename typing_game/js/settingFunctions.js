@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', function() {
 function goSettings() {
   if (isSetting === false && isPlaying === false) {
     if (isReady === false && isRestartReady === false) return;
+    if (isRanking) rankingGoSettings();
     isSetting = true;
     settingsAnimation();
   }
@@ -108,14 +109,20 @@ function returnHome() {
 
   if (isPlaying === true) startOver();
 
-  if (isSetting !== true) return;
+  if (isRanking) {
+    returnAnimation();
+    isRanking = false;
+    return;
+  }
 
   let setting_data = new FormData;
 
   setting_data.append('mode', `${GAME_MODE.value}`);
   setting_data.append('time_limit', `${TIME_LIMIT_VALUE.value}`);
-  if (RANKING.checked) setting_data.append('ranking', `${RANKING.value}`);
-  else setting_data.append('ranking', 'off');
+  if (RANKING) {
+    if (RANKING.checked) setting_data.append('ranking', `${RANKING.value}`);
+    else setting_data.append('ranking', 'off');
+  }
 
   if (GAME_MODE.value === 'ja') {
     GOOD_COUNTER.innerHTML = '打鍵数: <span id="Good">0</span>';
@@ -157,19 +164,14 @@ function returnHome() {
   TimeLimit = Number(TIME_LIMIT_VALUE.value) * 1000;
 
   if (isLogin) {
-    fetch('http://localhost:8888/typing_game/saveSettings.php', {
+    fetch('https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/saveSettings.php', {
       method: 'POST',
       body: setting_data,
     }).catch(() => alert('設定情報の保存に失敗しました'));
   }
 
-  isSetting = false;
   returnAnimation();
-
-  if (isRestartReady) {
-    restartNoneAnimation();
-    isRestartReady = false;
-  }
+  isSetting = false;
 }
 
 function selectChange() {
