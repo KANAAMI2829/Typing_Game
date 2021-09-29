@@ -663,6 +663,10 @@ function hiragana_NN(hiragana) { // "ん"のあいまい入力処理はちょっ
           Romaji_Match_Number++;
         }
       } else if (ROMAJI_TABLE_1[Hiragana_Next] !== undefined) {
+        if (ROMAJI_TABLE_1[Hiragana_Next][Romaji_Match_Number] === undefined) {
+          Completed = true;
+          return false;
+        }
         if (!ROMAJI_TABLE_1[Hiragana_Next][Romaji_Match_Number].indexOf(Removed_N_from_TypedKey)) {
           Found = true;
         } else {
