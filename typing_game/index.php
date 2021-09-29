@@ -33,36 +33,6 @@
     $account = $accounts->fetch(PDO::FETCH_ASSOC);
 
     loadSettings($account);
-
-    $sth = $db->prepare('SELECT name, score, rank FROM accounts WHERE ranking = "on" AND score != 0');
-    $sth->execute();
-    $all_result = $sth->fetchAll(PDO::FETCH_ASSOC);
-    $ranking_data = array(
-      "0" => 0, "1" => 0, "2" => 0, "3" => 0, "4" => 0, 
-      "5" => 0, "6" => 0, "7" => 0, "8" => 0, "9" => 0
-    );
-    if (count($all_result) > 9) {
-      for ($i = 0; $i < 10; $i++) {
-          $ranking_data["$i"] = (int)$all_result["$i"]['score'];
-      }
-    } else {
-      for ($i = 0; $i < count($all_result); $i++) {
-          $ranking_data["$i"] = (int)$all_result["$i"]['score'];
-      }
-    }
-
-    arsort($ranking_data);
-    $keys = array_keys($ranking_data);
-    if (count($all_result) > 0) $first   = $all_result[(int)$keys[0]];
-    if (count($all_result) > 1) $second  = $all_result[(int)$keys[1]];
-    if (count($all_result) > 2) $third   = $all_result[(int)$keys[2]];
-    if (count($all_result) > 3) $fourth  = $all_result[(int)$keys[3]];
-    if (count($all_result) > 4) $fifth   = $all_result[(int)$keys[4]];
-    if (count($all_result) > 5) $sixth   = $all_result[(int)$keys[5]];
-    if (count($all_result) > 6) $seventh = $all_result[(int)$keys[6]];
-    if (count($all_result) > 7) $eighth  = $all_result[(int)$keys[7]];
-    if (count($all_result) > 8) $ninth   = $all_result[(int)$keys[8]];
-    if (count($all_result) > 9) $tenth   = $all_result[(int)$keys[9]];
   }
 ?>
 <!DOCTYPE html>
@@ -190,63 +160,63 @@
           </tr>
           <tr>
             <th class="ranking_rank">1位</th>
-            <th class="ranking_name"><?php if (isset($first)) echo $first['name'] ?></th>
-            <th class="ranking_score"><?php if (isset($first)) echo $first['score'] ?></th>
-            <th class="ranking_rank_state"><?php if (isset($first)) echo $first['rank'] ?></th>
+            <th id="ranking_name_first" class="ranking_name"></th>
+            <th id="ranking_score_first" class="ranking_score"></th>
+            <th id="ranking_rank_first" class="ranking_rank_state"></th>
           </tr>
           <tr>
             <th class="ranking_rank">2位</th>
-            <th class="ranking_name"><?php if (isset($second)) echo $second['name'] ?></th>
-            <th class="ranking_score"><?php if (isset($second)) echo $second['score'] ?></th>
-            <th class="ranking_rank_state"><?php if (isset($second)) echo $second['rank'] ?></th>
+            <th id="ranking_name_second" class="ranking_name"></th>
+            <th id="ranking_score_second" class="ranking_score"></th>
+            <th id="ranking_rank_second" class="ranking_rank_state"></th>
           </tr>
           <tr>
             <th class="ranking_rank">3位</th>
-            <th class="ranking_name"><?php if (isset($third)) echo $third['name'] ?></th>
-            <th class="ranking_score"><?php if (isset($third)) echo $third['score'] ?></th>
-            <th class="ranking_rank_state"><?php if (isset($third)) echo $third['rank'] ?></th>
+            <th id="ranking_name_third" class="ranking_name"></th>
+            <th id="ranking_score_third" class="ranking_score"></th>
+            <th id="ranking_rank_third" class="ranking_rank_state"></th>
           </tr>
           <tr>
             <th class="ranking_rank">4位</th>
-            <th class="ranking_name"><?php if (isset($fourth)) echo $fourth['name'] ?></th>
-            <th class="ranking_score"><?php if (isset($fourth)) echo $fourth['score'] ?></th>
-            <th class="ranking_rank_state"><?php if (isset($fourth)) echo $fourth['rank'] ?></th>
+            <th id="ranking_name_fourth" class="ranking_name"></th>
+            <th id="ranking_score_fourth" class="ranking_score"></th>
+            <th id="ranking_rank_fourth" class="ranking_rank_state"></th>
           </tr>
           <tr>
             <th class="ranking_rank">5位</th>
-            <th class="ranking_name"><?php if (isset($fifth)) echo $fifth['name'] ?></th>
-            <th class="ranking_score"><?php if (isset($fifth)) echo $fifth['score'] ?></th>
-            <th class="ranking_rank_state"><?php if (isset($fifth)) echo $fifth['rank'] ?></th>
+            <th id="ranking_name_fifth" class="ranking_name"></th>
+            <th id="ranking_score_fifth" class="ranking_score"></th>
+            <th id="ranking_rank_fifth" class="ranking_rank_state"></th>
           </tr>
           <tr>
             <th class="ranking_rank">6位</th>
-            <th class="ranking_name"><?php if (isset($sixth)) echo $sixth['name'] ?></th>
-            <th class="ranking_score"><?php if (isset($sixth)) echo $sixth['score'] ?></th>
-            <th class="ranking_rank_state"><?php if (isset($sixth)) echo $sixth['rank'] ?></th>
+            <th id="ranking_name_sixth" class="ranking_name"></th>
+            <th id="ranking_score_sixth" class="ranking_score"></th>
+            <th id="ranking_rank_sixth" class="ranking_rank_state"></th>
           </tr>
           <tr>
             <th class="ranking_rank">7位</th>
-            <th class="ranking_name"><?php if (isset($seventh)) echo $seventh['name'] ?></th>
-            <th class="ranking_score"><?php if (isset($seventh)) echo $seventh['score'] ?></th>
-            <th class="ranking_rank_state"><?php if (isset($seventh)) echo $seventh['rank'] ?></th>
+            <th id="ranking_name_seventh" class="ranking_name"></th>
+            <th id="ranking_score_seventh" class="ranking_score"></th>
+            <th id="ranking_rank_seventh" class="ranking_rank_state"></th>
           </tr>
           <tr>
             <th class="ranking_rank">8位</th>
-            <th class="ranking_name"><?php if (isset($eighth)) echo $eighth['name'] ?></th>
-            <th class="ranking_score"><?php if (isset($eighth)) echo $eighth['score'] ?></th>
-            <th class="ranking_rank_state"><?php if (isset($eighth)) echo $eighth['rank'] ?></th>
+            <th id="ranking_name_eighth" class="ranking_name"></th>
+            <th id="ranking_score_eighth" class="ranking_score"></th>
+            <th id="ranking_rank_eighth" class="ranking_rank_state"></th>
           </tr>
           <tr>
             <th class="ranking_rank">9位</th>
-            <th class="ranking_name"><?php if (isset($ninth)) echo $ninth['name'] ?></th>
-            <th class="ranking_score"><?php if (isset($ninth)) echo $ninth['score'] ?></th>
-            <th class="ranking_rank_state"><?php if (isset($ninth)) echo $ninth['rank'] ?></th>
+            <th id="ranking_name_ninth" class="ranking_name"></th>
+            <th id="ranking_score_ninth" class="ranking_score"></th>
+            <th id="ranking_rank_ninth" class="ranking_rank_state"></th>
           </tr>
           <tr>
             <th class="ranking_rank">10位</th>
-            <th class="ranking_name"><?php if (isset($tenth)) echo $tenth['name'] ?></th>
-            <th class="ranking_score"><?php if (isset($tenth)) echo $tenth['score'] ?></th>
-            <th class="ranking_rank_state"><?php if (isset($tenth)) echo $tenth['rank'] ?></th>
+            <th id="ranking_name_tenth" class="ranking_name"></th>
+            <th id="ranking_score_tenth" class="ranking_score"></th>
+            <th id="ranking_rank_tenth" class="ranking_rank_state"></th>
           </tr>
         </table>
       </div>
@@ -263,11 +233,11 @@
               <dt>アカウント名: </dt>
               <dd><?php echo $account['name'] ?></dd>
               <dt><?php echo $account['name'] ?>さんの最高スコア: </dt>
-              <dd><?php echo $account['score'] ?></dd>
+              <dd id="account_score"></dd>
               <dt><?php echo $account['name'] ?>さんの最高ランク: </dt>
-              <dd><?php echo $account['rank'] ?></dd>
+              <dd id="account_rank"></dd>
               <dt>ランキング登録: </dt>
-              <dd><?php echo $account['ranking'] ?></dd>
+              <dd id="account_ranking"></dd>
             </dl>
           </div>
         </div>
