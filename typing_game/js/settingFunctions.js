@@ -11,6 +11,7 @@ function goSettings() {
     if (isReady === false && isRestartReady === false) return;
     if (isRanking) rankingGoSettings();
     isSetting = true;
+    selectChange();
     settingsAnimation();
   }
 }

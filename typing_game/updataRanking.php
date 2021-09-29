@@ -10,7 +10,7 @@
   );
   $ranking_array = array_fill(0, 10, '');
   if (count($all_result) > 9) {
-    for ($i = 0; $i < 10; $i++) {
+    for ($i = 0; $i < count($all_result); $i++) {
         $ranking_data["$i"] = (int)$all_result["$i"]['score'];
     }
   } else {
