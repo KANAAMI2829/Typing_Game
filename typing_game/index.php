@@ -223,7 +223,7 @@
     </section>
     <?php if ($isLogin): ?>
       <section id="AccountInfo_Popup" hidden>
-        <div class="popupinner">
+        <div class="popupInner">
           <div class="closeButton" id="Account_Close">
             <img src="img/Cross.svg" alt="閉じるボタン">
           </div>

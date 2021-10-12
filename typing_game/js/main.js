@@ -150,6 +150,7 @@ document.addEventListener('keydown', e => {
       GOOD.textContent = GoodCount;
       HINT_ROMAJI.textContent = '';
       changeTypedHintRomajiColor(HintRomaji);
+      if (Romaji === '') replaceReibun(0, 0);
     } else if (HintRomaji === '' && TypeKey === Romaji[0]) {
       Romaji_Index++;
       GoodCount++;
