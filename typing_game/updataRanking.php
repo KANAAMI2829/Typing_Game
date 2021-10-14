@@ -9,14 +9,8 @@
     "5" => 0, "6" => 0, "7" => 0, "8" => 0, "9" => 0
   );
   $ranking_array = array_fill(0, 10, '');
-  if (count($all_result) > 9) {
-    for ($i = 0; $i < count($all_result); $i++) {
-        $ranking_data["$i"] = (int)$all_result["$i"]['score'];
-    }
-  } else {
-    for ($i = 0; $i < count($all_result); $i++) {
-        $ranking_data["$i"] = (int)$all_result["$i"]['score'];
-    }
+  for ($i = 0; $i < count($all_result); $i++) {
+      $ranking_data["$i"] = (int)$all_result["$i"]['score'];
   }
 
   arsort($ranking_data);

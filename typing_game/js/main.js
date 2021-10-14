@@ -68,6 +68,7 @@ let isRestartReady = false;
 let isReady = true;
 let ENmode = false;
 let PGmode = false;
+let Typed_Time = Date.now();
 let StartTime;
 let Finish;
 let TypeKey;
@@ -107,6 +108,13 @@ document.addEventListener('keydown', e => {
       isRestartReady = false;
       return false;
     }
+  }
+  let x = Date.now() - Typed_Time;
+
+  if (x === 0) {
+    startOver();
+    alert('不正を感知しました\nエラーコード:001');
+    return false;
   }
 
   if (e.key === 'h' && isSetting) returnHome();
@@ -148,13 +156,29 @@ document.addEventListener('keydown', e => {
       Romaji_Index++;
       GoodCount++;
       GOOD.textContent = GoodCount;
+      Typed_Time = Date.now();
       HINT_ROMAJI.textContent = '';
+      if (TYPED_ROMAJI.textContent === '') {
+        if (x < 50) {
+          startOver();
+          alert('不正を感知しました\nエラーコード:002');
+          return false;
+        }
+      }
       changeTypedHintRomajiColor(HintRomaji);
       if (Romaji === '') replaceReibun(0, 0);
     } else if (HintRomaji === '' && TypeKey === Romaji[0]) {
       Romaji_Index++;
       GoodCount++;
       GOOD.textContent = GoodCount;
+      Typed_Time = Date.now();
+      if (TYPED_ROMAJI.textContent === '') {
+        if (x < 50) {
+          startOver();
+          alert('不正を感知しました\nエラーコード:002');
+          return false;
+        }
+      }
       changeTypedRomajiColor(Romaji);
       replaceReibun(Romaji_Index, Typed_Romaji.length + Romaji.length);
     } else {
@@ -169,10 +193,18 @@ document.addEventListener('keydown', e => {
       Romaji_Index++;
       GoodCount++;
       GOOD.textContent = GoodCount;
+      Typed_Time = Date.now();
+      if (TYPED_ROMAJI.textContent === '') {
+        if (x < 100) {
+          startOver();
+          alert('不正を感知しました\nエラーコード:002');
+          return false;
+        }
+      }
       changeTypedRomajiColor(Romaji);
       replaceReibun(Romaji_Index, Typed_Romaji.length + Romaji.length);
     } else {
-      MissCount++;;
+      MissCount++;
       MISS.textContent = MissCount;
       ROMAJI.style.color = '#a7b1be';
       TypedKey = TypedKey.slice(0, -1);
