@@ -219,7 +219,7 @@ function finishAnimation() {
       fetch('https://backdrop-kanaami.ssl-lolipop.jp/typing_event/typing_game/updateHighScore.php', {
         method: 'POST',
         body: result_data,
-      }).catch(() => alert('設定情報の保存に失敗しました'));
+      }).catch(() => alert('スコアの保存に失敗しました'));
     }
     
     setTimeout(() => {

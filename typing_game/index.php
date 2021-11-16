@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
   require('../dbconnect.php');
   session_start();
@@ -36,6 +35,7 @@
     loadSettings($account);
   }
 ?>
+<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8">

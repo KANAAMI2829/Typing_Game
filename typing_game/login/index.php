@@ -7,8 +7,8 @@
     $login->execute(array($_POST['name']));
     $account = $login->fetch(PDO::FETCH_ASSOC);
 
-    if (!preg_match('/^[0-9a-zA-Zぁ-んァ-ヴｦ-ﾟ一-龥]+$/u', $_POST['name'])) 'html改竄したりしないで、普通に使ってください';
-    if (!preg_match('/^[0-9a-zA-Z!@#%&()_={}<>,.?\/\\\+\-\|\*\^\~\:\;\[\]\$]+$/u', $_POST['password'])) 'html改竄したりしないで、普通に使ってください';
+    if (!preg_match('/^[0-9a-zA-Zぁ-んァ-ヴｦ-ﾟ一-龥]+$/u', $_POST['name'])) 'Error';
+    if (!preg_match('/^[0-9a-zA-Z!@#%&()_={}<>,.?\/\\\+\-\|\*\^\~\:\;\[\]\$]+$/u', $_POST['password'])) 'Error';
 
     if (!empty($account)) {
       $hash = $account['password'];
